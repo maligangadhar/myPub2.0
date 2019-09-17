@@ -1,0 +1,47 @@
+@import '../../../../styles/common_variables';
+.ban {
+    margin-right: 20px;
+    .banContainer {
+        height: 100%;
+        width: 100%;
+        background-color: white;
+        border-radius: 5px;
+        margin: 20px;
+        font-family: Gibson Light;
+        font-size: 14px;
+        color: $banGuidColor;
+        font-weight: 200;
+        overflow-y: auto;
+        padding-top:8px;
+        font-family: Gibson Light;
+        font-size: 16px;
+    }
+}
+
+.banPlacement {
+    @extend .gibsonRegular;
+    color: $banGuidColor !important;
+    padding: 3px;
+    font-size: 15px;
+    width: 550px;
+}
+
+.unBanCheck {
+    text-align: right;
+}
+
+.banGuid {
+    color: #3F72B9 !important;
+    cursor:pointer;
+}
+
+.pubLoading {
+    height: 110px !important;
+}
+
+.searchHeader {
+    @extend .gibsonRegular;
+    font-size: 20px;
+    color: #181529;
+    padding:11px 0px 0px 39px;
+}

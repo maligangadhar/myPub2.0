@@ -1,0 +1,47 @@
+<span *ngIf="!messages">
+    <div class="row pl-0 ml-0" style="height:25px;">
+        <div class="col-sm-3 col-lg-2 pl-0 pt-1 mr-1">
+            <!-- <p-checkbox class="ad_checkboxes" [(ngModel)]="size.enabled" (click)="select()" binary="true">
+            </p-checkbox> -->
+            <div *ngIf="banGuid">
+                <label class="myCheckbox banGuid">
+                    <!-- <input type="checkbox" style="vertical-align: baseline" [(ngModel)]="size.enabled" (change)="toggleVisibility($event)"> -->
+                    <p-checkbox class="ad_checkboxes" [(ngModel)]="size.enabled" (onChange)="toggleVisibility(size)"
+                        binary="true" [disabled]="disabled">
+                    </p-checkbox>
+                    <label></label>
+                </label>
+            </div>
+
+            <div *ngIf="!banGuid" class="notBanGuid">
+                <label class="myCheckbox">
+                    <!-- <input type="checkbox" class="placementCheckbox" style="vertical-align: baseline" [(ngModel)]="size.enabled"
+                        (change)="toggleVisibility($event)" /> -->
+                    <p-checkbox class="ad_checkboxes placementCheckbox" [(ngModel)]="size.enabled" (onChange)="toggleVisibility()"
+                        binary="true" [disabled]="disabled">
+                    </p-checkbox>
+                    <label></label>
+                </label>
+            </div>
+        </div>
+        <div class="col-sm-9 col-lg-9 label">
+            <label>{{size.size}}</label>
+        </div>
+    </div>
+</span>
+
+<span *ngIf="messages">
+    <div>
+        <label class="myCheckbox">
+            <!-- <input type="checkbox" style="vertical-align: baseline" [(ngModel)]="size.enabled" (change)="toggleVisibility($event)" [disabled]="readonly"/> -->
+            <p-checkbox class="ad_checkboxes" [(ngModel)]="size.enabled" (onChange)="toggleVisibility()" binary="true"
+                [disabled]="readonly">
+            </p-checkbox>
+            <label class="ml-2">
+                <span>
+                    {{size.size}}
+                </span>
+            </label>
+        </label>
+    </div>
+</span>

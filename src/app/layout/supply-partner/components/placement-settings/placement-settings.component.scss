@@ -1,0 +1,163 @@
+@import '../../../../../styles/adsettings';
+@import '../../../../../styles/common_variables';
+
+$blackColor: #000000;
+$lightGrayColor:#ffffff;
+$refreshColor:#f4f4f4;
+$redColor:#EC2F3B;
+$verylightGrayColor:#666666;
+
+.panel-margin {
+    margin-bottom: 35px;
+}
+
+.selected_ads {
+    padding: 0 30px 0 0;
+}
+
+.input_fields {
+    height: 30px !important;
+}
+
+.input_field_dropdown {
+    height: 30px !important;
+}
+
+.ui-lestbox .ui-listbox-list-wrapper {
+    max-height: 150px !important
+}
+
+.ui-overlaypanel {
+    left: 16px !important;
+    top: 3px !important;
+    width: 92%;
+}
+
+.overlayPanel {
+    margin: -6px 0px 0px -16px !important;
+    .footer {
+        cursor: pointer;
+        padding: 0px;
+    }
+    .adBtn {
+        margin: 1px 4px 0px 5px;
+    }
+    .cancelBtn {
+        margin: 2px 0px 0px 5px;
+    }
+}
+
+.siteCategoryName {
+    @extend .gibsonRegular;
+    padding: 4px 0px 0px 2px;
+    color: $verylightGrayColor;
+    font-size: 15px
+}
+
+.displayErrorMessages {
+    color: red;
+}
+
+.spNav {
+    color: #3F72B9;
+    font-size: 15px;
+    width: 200px;
+    cursor: pointer;
+    font-family: $gibsonFontFamily;
+    font-style: $gibsonFontStyle;
+    font-weight: 600;
+}
+
+.siteFlag {
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.errorMessage {
+    margin-top: 15px;
+}
+
+.addUsersBtn {
+    @extend .gibsonRegular;
+    border-radius: 30px;
+    padding: 0px;
+    width: 100px;
+    height: 25px;
+    font-size: 16px;
+    color: $lightGrayColor;
+    background-color: $redColor;
+    margin-top: -4px;
+    margin-left: 5px;
+   
+}
+
+.cancelUserBtn{
+    @extend .gibsonRegular;
+    border-radius: 30px;
+    padding: 0px;
+    height: 25px;
+    width: 100px;
+    font-size: 16px;
+    color: $lightGrayColor;
+    background-color: $blackColor;
+    margin: 0px 0px 3px 5px;
+}
+.autocomplete {
+    color: red;
+    height: 20px !important;
+    border: 3px solid red;
+}
+
+.userSetting {
+    margin-left: -15px;
+    margin-bottom:-30px;
+    .adUserMap {
+        margin-left: 15px;
+        font-size: small;
+        color: red;
+        :hover {
+            cursor: pointer;
+        }
+        .adUser {
+            font-weight: 500;
+            color: red;
+        }
+    }
+    .addUserResult {
+        margin-left: 15px;
+        .addUserBtn {
+            margin-left: 20px;
+        }
+    }
+}
+
+.refreshLabel {
+    background-color: $refreshColor;
+    opacity: 0.6;
+    color: $blackColor;
+    margin-left: 16px;
+    border-radius: 5px;
+    height: 35px;
+}
+
+.adRefreshLabel {
+    color: $blackColor !important;
+    padding: 7px 0px 0px 0px;
+    margin-left: -15px;
+}
+
+.cancelPlacement {
+    @extend .gibsonRegular;
+    border-radius: 30px;
+    padding: 0px;
+    height: 2.3em;
+    width: 12em;
+    font-size: 16px;
+    color: $lightGrayColor;
+    background-color:$blackColor;
+    margin: -18px 0px 0px 20px;
+}
+.siteCategory {
+    margin-top:10px;
+    margin-bottom:20px;
+}

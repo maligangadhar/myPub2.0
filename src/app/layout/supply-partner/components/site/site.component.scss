@@ -1,0 +1,92 @@
+@import '../../../../../styles/common_variables';
+
+$tableColumnColor:#181529;
+$backToInfoColor:#3F72B9;
+$cyanColor:#cccccc;
+$siteColor:#666666;
+
+.banner {
+    float: right;
+}
+
+.backToAccountInfo {
+    @extend .gibsonLight;
+    color: $backToInfoColor !important;
+    cursor: pointer;
+    padding: 0 0 0 10px;
+}
+
+.detailHeader {
+    height: 40px;
+    padding: 15px;
+
+    .leftBanner {
+        padding: 5px;
+    }
+    .backaccountBtn{
+       padding:0px 0px 0px 8px;
+    }
+}
+
+.selectedSite {
+    @extend .gibsonRegular;
+    vertical-align: bottom;
+    font-size: 17px;
+    padding: 0px 0px 0px 15px;
+}
+
+.siteTableColumn {
+    color: $tableColumnColor;
+    font-size: 18px;
+    font-family: "Gibson";
+}
+
+.siteContainer {
+    @extend .gibsonRegular;
+    font-size: 15px;
+    padding: 20px;
+    height: 100%;
+
+    .siteDetails {
+        width: 100%;
+        min-height: 450px;
+        border: 0px solid $cyanColor;
+        background-color: white;
+        border-radius: 1px;
+        border-bottom: 0px solid $cyanColor;
+    }
+
+    .siteContainer {
+        width: 50%;
+    }
+
+    .siteName {
+        @extend .gibsonRegular;
+        color:$backToInfoColor;
+        font-size: 16px;
+        cursor: pointer;
+        :hover {
+            cursor: pointer;
+        }
+        padding: 10px 0 0 19px;
+    }
+
+    .siteId {
+        @extend .gibsonRegular;
+        color: $siteColor !important;
+        font-size: 16px;
+        min-width: 230px;
+        padding: 10px 0 0 19px;
+    }
+
+    .searchItems {
+        height: 100%;
+        width: 100%;
+        border-bottom: 0px solid $cyanColor;
+    }
+
+    .createGuid {
+        cursor: pointer;
+        padding: 10px;
+    }
+}

@@ -1,0 +1,83 @@
+<div *ngIf="msgs">
+    <p-messages [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'1000ms'" [(value)]="msgs" [closable]="true">
+    </p-messages>
+</div>
+<div class="ban" [style.height.px]="height">
+    <div class="row" style="margin-bottom:-20px;">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-8 searchHeader">
+            <strong>Ban Placement</strong>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" style="margin-top:5px;">
+            <div style="margin-right:-13px;">
+                <div class="input-group col-md-12 pr-0">
+                    <input [(ngModel)]="searchText"  type="text"
+                        class="form-control searchSupplyBar" placeholder="Search" #search />
+                    <span class="input-group-btn">
+                        <button class="btn searchButton" (click)="onSearch(search.value)" type="button">
+                            <i class="fa fa-times" (click)="onClearSearch()" *ngIf="searchText && searchText.length>0"></i>
+                            <i class="fa fa-search ml-1"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="col-md-12 col-sm-12 banContainer">
+        <div>
+            <div *ngIf="banDetailsLoading" class="pubLoading">
+                <div class="loadingSpinner"></div>
+            </div>
+            <div *ngIf="!banDetailsLoading">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="banPlacement">
+                                Placements
+                            </th>
+                            <th class="banPlacement">
+                                GUID
+                            </th>
+                            <th class="banPlacement pl-0">
+                                Remove ban
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let ban of bannedList | grdFilter: {login:searchText, guid:searchText}">
+                            <td class="banPlacement banGuid p-1">
+                                <span (click)="onBanView(ban)">{{ ban.login }} </span>
+                            </td>
+                            <td class="banPlacement p-0 pl-1">
+                                {{ ban.guid }}
+                            </td>
+                            <td class="banPlacement unBanCheck p-0 pl-1">
+                                <gc-sp-checkbox (selected)="onCheckBoxClick($event)" [size]="ban"></gc-sp-checkbox>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 col-sm-12" style="text-align:center ">
+        <p-paginator [rows]="100" [totalRecords]="totalBanLength" (onPageChange)="paginate($event)"></p-paginator>
+    </div>
+    <div class="row marginLeft">
+        <button type="button" class="btn createAccount" [disabled]="selGuidArr.length<1" (click)="unBanSite(content)">
+            Remove Ban</button>
+    </div>
+</div>
+<ng-template #content let-modal>
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+                {{dialog_box_content}}
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn createAccount" (click)="modal.close(1)">Remove</button>
+        <button type="button" class="btn createAccount" (click)="modal.close(0)">Cancel</button>
+    </div>
+</ng-template>

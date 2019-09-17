@@ -1,0 +1,126 @@
+@import '../../../../../styles/common_variables';
+$tableColumnColor:#181529;
+
+.supplyChainTableColumn {
+    @extend .gibsonRegular;
+    color: $tableColumnColor;
+    font-size: 18px;
+}
+
+.siteContainer {
+    @extend .gibsonRegular;
+    font-size: 16px;
+    padding: 20px;
+
+    .spDetails {
+        width: 100%;
+        border: 0px solid #cccccc;
+        background-color: white;
+        border-radius: 1px;
+        padding: 0px 0px 0px 20px;
+        border-bottom: 0px solid #cccccc;
+    }
+
+    .searchTable {
+        width: 100%;
+        // height: 500px;
+    }
+
+    .spContainer {
+        width: 100%;
+        height: 100%;
+    }
+
+    .search {
+        font-size: 16px;
+        color: #868e96;
+        margin-bottom: 5px;
+    }
+
+    .supplyChainName {
+        @extend .gibsonRegular;
+
+        color: #3F72B9;
+        font-size: 15px;
+        width: 200px;
+        cursor: pointer;
+
+        :hover {
+            cursor: pointer;
+        }
+    }
+
+    .supplyChainId {
+        @extend .gibsonRegular;
+        color: #666666 !important;
+        padding: 3px;
+        font-size: 15px;
+        width: 400px;
+    }
+
+    .searchHeader {
+        @extend .gibsonRegular;
+        font-size: 20px;
+        color: #181529;
+        padding-left: 47px;
+    }
+
+    .searchSubHeader {
+        @extend .gibsonRegular;
+        font-size: 16px;
+        color: #181529;
+    }
+
+    .searchItems {
+        overflow-y: hidden;
+        border-bottom: 0px solid #cccccc;
+        margin-top: -10px;
+    }
+
+    height: 100%;
+
+    .searchbar {
+        margin-top: -10px;
+    }
+}
+
+.supplypartnerSearchBar {
+    @extend .gibsonRegular;
+    border: 0px;
+    padding: 5px;
+    margin: 3px 0px 3px 3px;
+    font-size: 12px;
+    width: 240px;
+    height: 27px;
+    font-size: 14px;
+    color: #000000;
+}
+
+.searchIcon {
+    margin-left: -23px;
+    cursor: pointer;
+}
+
+input:focus {
+    outline: none;
+    cursor: pointer;
+}
+
+.paginator {
+    margin-top: 10px !important;
+}
+
+.search-results {
+    width: 100%;
+    overflow-y: auto;
+    padding: 0px 50px 0px 10px;
+}
+
+input.icon::-webkit-input-placeholder {
+    font-family: 'FontAwesome';
+}
+
+input::-webkit-input-placeholder {
+    direction: rtl;
+    text-align: left;
+}

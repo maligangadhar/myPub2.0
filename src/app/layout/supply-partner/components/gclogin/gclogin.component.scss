@@ -1,0 +1,40 @@
+@import '../../../../../styles/common_variables';
+
+.container {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    position: fixed;
+    top: 50%;
+    left: 35%;
+    width: 35em;
+    height: 15em;
+    margin-top: -9em;
+    background-color: white;
+    padding: 50px;
+
+    .header {
+        font-size: 27px;
+        font-weight: bold;
+        margin-left: 50px;
+    }
+
+    .subHeader {
+        @extend .gibsonRegular;
+        color: #666666 !important;
+        font-size: 16px;
+        font-weight: 200;
+        opacity: 0.7;
+        margin-left: 32px;
+        padding: 20px;
+    }
+
+    .link {
+        @extend .gibsonLight;
+        font-size: 18px;
+        margin-left: 40px;
+        color: deepskyblue;
+        font-weight: normal;
+        cursor: pointer;
+        padding: 15px;
+    }
+}

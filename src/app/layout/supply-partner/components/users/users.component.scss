@@ -1,0 +1,120 @@
+ @import '../../../../../styles/common_variables';
+
+ $cyanColor: #666666;
+ $placementColor:#3F72B9;
+ $searchHeaderColor:#181529;
+
+ .userContainer {
+     height: 100%;
+     width: 100%;
+     background-color: white;
+     border-radius: 5px;
+     margin: 6px;
+     font-family: Gibson Light;
+     font-size: 14px;
+     color: $cyanColor;
+     font-weight: 200;
+     overflow-y: auto;
+     padding-top: 8px;
+     font-family: Gibson Light;
+     font-size: 16px;
+ }
+
+ .searchHeader {
+     @extend .gibsonRegular;
+     font-size: 20px;
+     color: $searchHeaderColor;
+     padding: 11px 0px 0px 39px;
+
+     .backUserBtn {
+         cursor: pointer;
+         margin: 0px 5px 0px 0px;
+         vertical-align: middle;
+     }
+ }
+
+ .userNav {
+     color: $placementColor;
+     font-size: 15px;
+     width: 200px;
+     cursor: pointer;
+ }
+
+ .placementName {
+     @extend .gibsonRegular;
+     color: $placementColor;
+     font-size: 15px;
+     width: 200px;
+     vertical-align: top;
+     cursor: pointer;
+
+     :hover {
+         cursor: pointer;
+     }
+ }
+ .placementId {
+     @extend .gibsonRegular;
+     color: $cyanColor !important;
+     padding: 3px;
+     font-size: 15px;
+     width: 400px;
+ }
+
+ .users {
+     margin-top: 5px;
+
+     .addUser {
+         margin-left: 10px;
+         margin-top: -4px;
+         width: 80px;
+         height: 22px;
+         font-size: 13px;
+     }
+
+     .editEmail {
+         font-size: smaller;
+         margin-left: 5px;
+         cursor: pointer;
+     }
+
+     .selectedUser {
+         width: 45%;
+         height: 30px;
+         margin-right: 5px;
+         margin-left:0px;
+         display: inline !important
+     }
+
+     .selectedUSer {
+         color: $cyanColor;
+         font-size: 16px;
+         margin-left:-4px;
+     }
+ }
+
+ .saveEmail {
+     margin-top: 0px;
+     width: 90px;
+     height:22px;
+ }
+ .associateUser {
+     margin-top: 50px;
+     height: 200px;
+     .assoUser {
+         color:#666666;
+         font-size: 17px;
+     }
+ }
+
+ .selectAllPlacements {
+     width: 30px;
+     padding: 0px 10px 14px 10px;
+ }
+
+ .deleteUser {
+     margin-top:10px;
+     margin-left:5px;
+     color:#666666;
+     padding:4px;
+     font-size:14px;
+ }

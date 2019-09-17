@@ -1,0 +1,108 @@
+@import '../../../../../../styles/common_variables';
+
+.setting {
+    height: 100%;
+    border-radius: 4px;
+    margin-left: 2px;
+    background-color: white;
+    padding: 19px 0 0 24px;
+
+    .settingItem {
+        font-weight: $gibsonRegular;
+        color: #000000;
+    }
+}
+
+.label {
+    @extend .gibsonRegular;
+    color: #666666 !important;
+    font-size: 16px;
+    opacity: 0.7;
+    padding: 14px 0 14px 0;
+}
+
+.banner {
+    float: right;
+}
+
+.detailHeader {
+    height: 60px;
+    padding: 15px;
+}
+
+.editBtn {
+    padding-left: 10px;
+
+    .editGUID {
+        @extend .gibsonRegular;
+        border-radius: 30px;
+        padding: 0px;
+        width: 140px;
+        height: 25px;
+        font-size: 16px;
+        color: #ffffff;
+        background-color: #EC2F3B;
+    }
+
+    .banPlacement {
+        @extend .gibsonRegular;
+        border-radius: 30px;
+        padding: 0px;
+        width: 140px;
+        height: 25px;
+        font-size: 16px;
+        color: #ffffff;
+        background-color: #000000;
+        margin-left: 10px;
+    }
+
+    .banPlacementMessage {
+        @extend .gibsonRegular;
+        border-radius: 30px;
+        padding: 0px;
+        width: 260px;
+        height: 25px;
+        font-size: 16px;
+        color: #ffffff;
+        background-color: #EC2F3B;
+        margin-left: 20px;
+    }
+}
+
+.nameHeader {
+    padding-left: 3rem;
+}
+
+.realVedioSetting {
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+}
+
+.passbackMargin {
+    margin-top: 13px;
+}
+
+.spNav {
+    @extend .gibsonRegular;
+    color: #3F72B9;
+    font-size: 15px;
+    width: 200px;
+    cursor: pointer;
+    font-weight: 600;
+}
+.users{
+    height: 100%;
+    border-radius: 4px;
+    background-color: white;
+    padding: 0px 0px 20px 1px;
+    margin: 5px 5px 5px 3px;
+    .userDetails{
+        padding-left:20px;
+        padding-top:15px;
+         .user_label {
+             font-weight: 600;
+             margin-bottom: 15px;
+         }
+    }
+}
+

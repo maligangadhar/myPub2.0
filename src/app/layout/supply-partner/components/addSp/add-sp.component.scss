@@ -1,0 +1,87 @@
+@import '../../../../../styles/adsettings';
+@import '../../../../../styles/numberInputField';
+@import '../../../../../styles/common_variables';
+$buttonMarginTop: 5px;
+
+.spBanner {
+    @extend .gibsonRegular;
+    font-size: 20px;
+    color: #181529;
+}
+
+.form-group {
+    >label {
+        @extend .gibsonRegular;
+        color: #666666 !important;
+        font-size: 16px;
+    }
+
+    >input {
+        @extend .gibsonRegular;
+        color: #666666 !important;
+        font-size: 16px;
+        width: 185px;
+        height: 25px;
+    }
+
+    >select {
+        @extend .gibsonRegular;
+        color: #666666 !important;
+        font-size: 16px;
+        width: 185px;
+        height: 25px;
+        padding: 4px;
+    }
+}
+
+.addNewSp {
+    border: 0px solid #cccccc;
+    background-color: white;
+    margin-left: 16px;
+    padding: 10px 10px 10px 10px;
+}
+
+.createSPAccount {
+    @extend .gibsonLight;
+
+    border-radius: 30px;
+    margin-top: $buttonMarginTop;
+    padding: 0px;
+    width: 140px;
+    font-size: 16px;
+    color: #ffffff;
+    height: 25px;
+    cursor: pointer;
+    background-color: #EC2F3B;
+    float: right;
+    font-weight: lighter;
+}
+
+.cancelSpAccount {
+    @extend .gibsonLight;
+    border-radius: 30px;
+    margin-top: $buttonMarginTop;
+    padding: 0px;
+    width: 140px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #ffffff;
+    height: 25px;
+    background-color: #181529;
+    float: left;
+    font-weight: lighter;
+}
+
+.form-control {
+    height: 100%;
+}
+
+.spLabel {
+    height: 60px;
+    padding: 20px 0 0 18px;
+    margin-left: 13px;
+}
+
+.input_fields_label {
+    @extend .gibsonRegular;
+}

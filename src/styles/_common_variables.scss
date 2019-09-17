@@ -1,0 +1,17 @@
+$gibsonFontFamily : canada-type-gibson,
+sans-serif;
+$gibsonFontStyle: normal;
+$gibsonRegular: 400;
+$gibsonLight: 300;
+$banGuidColor: #666666;
+.gibsonRegular {
+    font-family: $gibsonFontFamily;
+    font-style: $gibsonFontStyle;
+    font-weight: $gibsonRegular;
+}
+
+.gibsonLight {
+    font-family: $gibsonFontFamily;
+    font-style: $gibsonFontStyle;
+    font-weight: $gibsonLight;
+}

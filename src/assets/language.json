@@ -1,0 +1,80 @@
+[   {
+        "name": "Arabic",
+        "code": "Arabic"
+    },
+    {
+        "name": "English",
+        "code": "English"
+    },
+    {
+        "name": "French",
+        "code": "French"
+    },
+    {
+        "name": "German",
+        "code": "German"
+    },
+    {
+        "name": "Hebrew",
+        "code": "Hebrew"
+    },
+    {
+        "name": "Portuguese",
+        "code": "Portuguese"
+    },
+    {
+        "name": "Russian",
+        "code": "Russian"
+    },
+    {
+        "name": "Spanish",
+        "code": "Spanish"
+    },
+    {
+        "name": "Turkish",
+        "code": "Turkish"
+    },
+    {
+        "name": "Norwegian",
+        "code": "Norwegian"
+    },
+    {
+        "name": "Italian",
+        "code": "Italian"
+    }, {
+        "name": "Finnish",
+        "code": "Finnish"
+    },
+    {
+        "name": "Danish",
+        "code": "Danish"
+    }, {
+        "name": "Hindu",
+        "code": "Hindu"
+    },
+    {
+        "name": "Dutch",
+        "code": "Dutch"
+    }, {
+        "name": "Mandarin",
+        "code": "Mandarin"
+    },
+    {
+        "name": "Japanese",
+        "code": "Japanese"
+    }, {
+        "name": "Korean",
+        "code": "Korean"
+    },
+    {
+        "name": "Greek",
+        "code": "Greek"
+    }, {
+        "name": "Persian",
+        "code": "Persian"
+    },
+    {
+        "name": "Vietnamese",
+        "code": "Vietnamese"
+    }
+]

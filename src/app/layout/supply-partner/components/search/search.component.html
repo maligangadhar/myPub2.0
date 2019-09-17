@@ -1,0 +1,87 @@
+<div class="siteContainer">
+    <div *ngIf="msgs">
+        <p-messages [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'1000ms'" [(value)]="msgs"
+            [closable]="true"></p-messages>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-9 searchHeader">
+            <strong>Supply Partners</strong>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 searchbar">
+            <div>
+                <div class="input-group col-md-12">
+                    <input [(ngModel)]="searchText" (keyup)=updateRowCount() type="text"
+                        class="form-control searchSupplyBar" placeholder="Search Supply Partner" #search />
+                    <span class="input-group-btn">
+                        <span class="btn searchButton" type="button">
+                            <span class="fa fa-times mr-1" (click)="onClearSearch()" *ngIf="searchText.length>0"></span>
+                            <span class="fa fa-search" (click)="onSearch(search.value)"></span>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="searchItems">
+        <div *ngIf="searchDetailsLoading" class="pubLoading">
+            <div class="loadingSpinner"></div>
+        </div>
+        <div *ngIf="!searchDetailsLoading && siteDetails">
+            <div class="spDetails">
+                <div class="spContainer">
+                    <cdk-virtual-scroll-viewport [style.height.px]="height" [itemSize]="20">
+                        <table class="searchTable">
+                            <thead>
+                                <tr class="supplyChainTableColumn">
+                                    <th class="supplyChainId col-sm-3 col-md-6">
+                                        <p>Name</p>
+                                    </th>
+                                    <th class="supplyChainId col-sm-3 col-md-6">
+                                        <p>Supply Partner ID</p>
+                                    </th>
+                                    <th class="supplyChainId col-sm-3 col-md-6" *ngIf="showGuidFlag">
+                                        <p>GUID</p>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id='searchTableBody'>
+                                <div *ngIf="rowCount <1 ">
+                                    <gc-no-results [displaySiteDetails]="displaySiteDetails"
+                                        [globalSearchText]="globalSearchText" [rowCount]="rowCount"
+                                        [searchText]="searchText">
+                                    </gc-no-results>
+                                </div>
+                                <tr
+                                    *cdkVirtualFor="let site of displaySiteDetails | grdFilter: {partner_guid: searchText, partner_name:searchText}">
+                                    <td class="col-sm-6 supplyChainName p-0">
+                                        <p class="mb-0">
+                                            <a [routerLinkActive]="['router-link-active']">
+                                                <span (click)="onSiteView(site)">{{ site.partner_name }}</span>
+                                            </a>
+                                        </p>
+                                    </td>
+                                    <td class="col-sm-6 supplyChainId">
+                                        <p class="mb-0">
+                                            {{ site.partner_guid }}
+                                        </p>
+                                    </td>
+                                    <td class="col-sm-6 supplyChainName" *ngIf="showGuidFlag">
+                                        <p class="mb-0">
+                                            <a [routerLinkActive]="['router-link-active']">
+                                                <span (click)="navToPlacementDetailPage(site)"
+                                                    style="margin-left:-10px">
+                                                    {{site.guid}}
+                                                </span>
+                                            </a>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </cdk-virtual-scroll-viewport>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

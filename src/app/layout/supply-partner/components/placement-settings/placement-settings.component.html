@@ -1,0 +1,387 @@
+<div *ngIf="placementDetailsLoading" class="pubLoading">
+    <div class="loadingSpinner"></div>
+</div>
+<div *ngIf="msgs">
+    <p-messages [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'1000ms'" [(value)]="msgs" [closable]="true">
+    </p-messages>
+</div>
+<div *ngIf="!placementDetailsLoading" class="container-fluid">
+    <div class="row ad_domain_settings">
+        <div class="col-sm-12 detailHeader">
+            <div>
+                <div class="d-inline selectedSite leftBanner">
+                    <a [routerLinkActive]="['router-link-active']">
+                        <span class="spNav" (click)="goBackToDetailPage()">
+                            {{placement_name}} </span>
+                    </a>
+                </div>
+                <div class="banner" *ngIf="new_placement">
+                    <strong> Supply Partner ID:</strong>
+                    <section class="float-right" style="margin-left:8px;">{{selected_guid}}</section>
+                </div>
+                <div class="banner" *ngIf="selected_guid && !new_placement">
+                    <strong> Placement ID:</strong>
+                    <section class="float-right" style="margin-left:8px;">{{selected_guid}}</section>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row ad_settings_panel">
+        <div class="col-sm-12 pt-3">
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="row">
+                        <div class="col-sm-4 form-group">
+                            <label class="input_fields_label" for="placement-name">Placement Name<span
+                                    class="mandatory_fields">*</span></label>
+                            <br>
+                            <input type="text" [(ngModel)]="placementDetails.site_details.placement_name"
+                                *ngIf=" new_placement || (placementDetails)"
+                                [ngClass]="{'is-invalid': submitted && display_error_messages['placement-name']}"
+                                (ngModelChange)="placementChange($event)" class="form-control input_fields"
+                                id="placement-name">
+                            <div class="errorMessage" *ngIf="display_error_messages['placement-name']">
+                                <label class="displayErrorMessages">{{display_error_messages["placement-name"]}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 form-group">
+                            <label class="input_fields_label" for="tag-type">Tag Type<span
+                                    class="mandatory_fields">*</span></label>
+                            <br>
+                            <span *ngIf="MetaData && placementDetails">
+                                <select class="input_field_dropdown"
+                                    [(ngModel)]="placementDetails.sic_site_setting.install_method"
+                                    [ngClass]="{'is-invalid': submitted && display_error_messages['Tag Type']}">
+                                    <option *ngFor="let tag of tagList" [value]="tag">{{tag}}</option>
+                                </select>
+                            </span>
+                            <div *ngIf="display_error_messages && display_error_messages['Tag Type']">
+                                <label class="displayErrorMessages">{{display_error_messages['Tag Type']}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 form-group">
+                            <label class="input_fields_label" for="tag-type">Legacy login/URL<span
+                                    class="mandatory_fields">*</span></label>
+                            <input *ngIf="new_placement || (placementDetails )" class="form-control input_fields"
+                                id="tag-type" [(ngModel)]="placementDetails.site_details.login"
+                                (ngModelChange)="urlChange($event)"
+                                [ngClass]="{'is-invalid':submitted && display_error_messages['Login Message']}" />
+                            <div class="errorMessage" *ngIf="display_error_messages['Login Message']">
+                                <label class="displayErrorMessages">{{display_error_messages["Login Message"]}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="row siteCategory">
+                        <div class="col-sm-4">
+                            <label class="input_fields_label" for="site-category">
+                                Site Category<span class="mandatory_fields">*</span>
+                                <span *ngIf="!siteCateFlag" (click)=siteCategoryFlagUpdate(op,$event)> <i
+                                        class="fa fa-chevron-down siteFlag" aria-hidden="true"></i>
+                                </span>
+                                <span *ngIf="siteCateFlag" (click)="siteCateFlag=false"> <i
+                                        class="fa fa-chevron-up siteFlag" aria-hidden="true"></i>
+                                </span>
+                            </label>
+                            <p-overlayPanel #op [dismissable]="true" (onHide)=onHideOverlayPanel()>
+                                <div class="overlayPanel">
+                                    <p-listbox *ngIf="siteCateFlag" [options]="siteCategoryList"
+                                        (onChange)="onSiteCategoryChange(op,$event)" [(ngModel)]="siteCategory">
+                                        <ng-template let-site let-i="index" pTemplate="item">
+                                            <div class="ui-helper-clearfix">
+                                                <span>{{site.label}}</span>
+                                            </div>
+                                        </ng-template>
+                                        <p-footer>
+                                            <span class="col-sm-12 footer" *ngIf="!addNewCategoryFlag"
+                                                (click)="addNewCategory()">
+                                                Add New</span>
+                                            <span *ngIf="addNewCategoryFlag" class="row col-sm-12">
+                                                <input type="text" [(ngModel)]="newCategory"
+                                                    class="col-sm-6 form-control input_fields" />
+                                                <button type="button" class="adBtn col-sm-2 btn createAccount"
+                                                    (click)=addNewCategoryItem()>Add</button>
+                                                <button type="button" class="col-sm-3 btn createAccount cancelBtn"
+                                                    (click)="addNewCategoryFlag=false">Cancel</button>
+                                            </span>
+                                        </p-footer>
+                                    </p-listbox>
+                                </div>
+                            </p-overlayPanel>
+                            <div class="siteCategoryName">
+                                {{ siteCategoryName }}
+                                <div class="errorMessage"
+                                    *ngIf="display_error_messages && display_error_messages['Site Category']">
+                                    <label
+                                        class="displayErrorMessages">{{display_error_messages['Site Category']}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="input_fields_label" for="page-views">Monthly Page Views<span
+                                    class="mandatory_fields">*</span></label>
+                            <input type="text"
+                                *ngIf="placementDetails && (placementDetails.site_details.thirty_day_pageviews ||  placementDetails.site_details.thirty_day_pageviews == 0)"
+                                class="form-control input_fields" id="page-views"
+                                [(ngModel)]="placementDetails.site_details.sic_monthly_pv_estimate"
+                                (ngModelChange)="monthlyChange($event)"
+                                [ngClass]="{'is-invalid': display_error_messages['Pageview'] && submitted }" />
+                            <div class="errorMessage"
+                                *ngIf="display_error_messages && display_error_messages['Pageview']">
+                                <label class="displayErrorMessages">{{display_error_messages['Pageview']}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="language" class="input_fields_label">Site Language<span
+                                    class="mandatory_fields">*</span></label>
+                            <br>
+                            <select class="input_field_dropdown" id="language"
+                                [(ngModel)]="placementDetails.site_details.language">
+                                <option *ngFor="let lan of languageList" [value]="lan.code"
+                                    [ngClass]="{'is-invalid': submitted && display_error_messages['Language']}">
+                                    {{lan.name}}
+                                <option>
+                            </select>
+                            <div *ngIf="display_error_messages && display_error_messages['Language']">
+                                <label class="displayErrorMessages">{{display_error_messages['Language']}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- Ad product settings starts here-->
+                        <div class="col-sm-12">
+                            <p-accordion>
+                                <!--Client side settings starts -->
+                                <div class="panel-margin">
+                                    <p-accordionTab>
+                                        <p-header>
+                                            <span> {{panel_headers.client_side}}</span>
+                                        </p-header>
+                                        <gc-client-side-setting
+                                            *ngIf="placementDetails && placementDetails.header_bidding_option"
+                                            [placementDetailsClientSide]="placementDetails.header_bidding_option"
+                                            [disabled]="false" (ClientSide)=onUpdateSettings($event,9)>
+                                        </gc-client-side-setting>
+                                    </p-accordionTab>
+                                </div>
+                                <!--Client side settings ends -->
+                                <!--publisher pricing controls starts-->
+                                <div class="panel-margin">
+                                    <p-accordionTab>
+                                        <p-header>
+                                            <span> {{panel_headers.publisher_pricing}}</span>
+                                        </p-header>
+                                        <span>
+                                            <gc-publisher-pricing  [publisherDetails]="placementDetails.sic_site_setting" (publiserPricingData)=onUpdateSettings($event,11)></gc-publisher-pricing>
+                                        </span>
+                                    </p-accordionTab>
+                                </div>
+                                <!--publisher pricing controls starts-->
+
+                                <!-- Pillar starts here-->
+                                <div class="panel-margin">
+                                    <p-accordionTab>
+                                        <p-header>
+                                            <span>{{panel_headers.pillar}}</span>
+                                            <span class="pull-right selected_ads">{{selected_ads["Pillar"]}}</span>
+                                            <!-- <gc-validation-icon [validation_status]="validation_flag.pillar"></gc-validation-icon> -->
+                                        </p-header>
+                                        <span *ngIf="MetaData && placementDetails">
+                                            <gc-pillar-settings [PillarPlacementDetails]="placementDetails"
+                                                (Pillar)="onUpdateSettings($event,1)"></gc-pillar-settings>
+                                            <span *ngIf=" true != true; else adsRefresh"></span>
+                                        </span>
+                                    </p-accordionTab>
+                                </div>
+                                <!-- Pillar ends here-->
+
+                                <!-- Adhesion starts here-->
+                                <div class="panel-margin">
+                                    <p-accordionTab>
+                                        <p-header>
+                                            <span> {{panel_headers.adhesion}}</span>
+                                            <span class="pull-right selected_ads">{{selected_ads["Adhesion"]}}</span>
+                                            <!-- <gc-validation-icon [validation_status]="validation_flag.adhesion"></gc-validation-icon> -->
+                                        </p-header>
+                                        <span *ngIf="MetaData">
+                                            <gc-adhesion-settings [AdhesionPlacementDetails]="placementDetails"
+                                                (Adhesion)="onUpdateSettings($event,2)"></gc-adhesion-settings>
+                                            <span *ngIf=" true != true; else adsRefresh"></span>
+                                        </span>
+                                    </p-accordionTab>
+                                </div>
+                                <!-- Adhesion ends here-->
+                                <!-- Video Pillar starts here-->
+                                <div class="panel-margin">
+                                    <p-accordionTab>
+                                        <p-header>
+                                            <span> {{panel_headers.video_pillar}}</span>
+                                            <!-- <gc-validation-icon [validation_status]="validation_flag.video_pillar"></gc-validation-icon> -->
+                                        </p-header>
+                                        <gc-video-pillar-settings [VideoPillarPlacementDetails]="placementDetails"
+                                            (VideoPillar)=onUpdateSettings($event,5)></gc-video-pillar-settings>
+                                    </p-accordionTab>
+                                </div>
+                                <!-- Video Pillar ends here-->
+
+                                <!-- In-feed Video starts here-->
+                                <div class="panel-margin">
+                                    <p-accordionTab>
+                                        <p-header>
+                                            <span> {{panel_headers.infeed_video}}</span>
+                                            <!-- <gc-validation-icon [validation_status]="validation_flag.infeed_video"></gc-validation-icon> -->
+                                        </p-header>
+                                        <gc-infeed-video-settings [InfeedVideoPlacementSettings]="placementDetails"
+                                            (InfeedVideo)=onUpdateSettings($event,6)></gc-infeed-video-settings>
+                                        <span *ngIf=" true != true; else adsRefresh"></span>
+                                    </p-accordionTab>
+                                </div>
+                                <!-- In-feed Video ends here-->
+
+                                <!-- In-feed Impact starts here-->
+                                <div class="panel-margin">
+                                    <p-accordionTab>
+                                        <p-header>
+                                            <span> {{panel_headers.infeed_impact}}</span>
+                                            <span
+                                                class="pull-right selected_ads">{{selected_ads["In-Feed Impact"]}}</span>
+                                            <!-- <gc-validation-icon [validation_status]="validation_flag.infeed_impact"></gc-validation-icon> -->
+                                        </p-header>
+                                        <span *ngIf="MetaData && MetaData.data && MetaData.data.render_effects">
+                                            <gc-infeed-impact-settings [InfeedImpactMeta]="MetaData.data.render_effects"
+                                                [InfeedImpactPlacementDetails]="placementDetails"
+                                                (InfeedImpact)=onUpdateSettings($event,7)>
+                                            </gc-infeed-impact-settings>
+                                        </span>
+                                        <span *ngIf=" true != true; else adsRefresh"></span>
+                                    </p-accordionTab>
+                                </div>
+                                <!-- In-feed Impact ends here-->
+
+                                <!-- SIAB starts here-->
+                                <div class="panel-margin">
+                                    <p-accordionTab>
+                                        <p-header>
+                                            <span> {{panel_headers.siab}}</span>
+                                            <span
+                                                class="pull-right selected_ads">{{selected_ads["Standard Display"]}}</span>
+                                            <!-- <gc-validation-icon [validation_status]="validation_flag.siab"></gc-validation-icon> -->
+                                        </p-header>
+                                        <span *ngIf="MetaData">
+                                            <gc-siab-settings [SiabPlacementDetails]="placementDetails"
+                                                (SIAB)=onUpdateSettings($event,8)></gc-siab-settings>
+                                            <span *ngIf=" true != true; else adsRefresh"></span>
+                                        </span>
+                                    </p-accordionTab>
+                                </div>
+                                <!-- SIAB ends here-->
+                                <!--Real Video settings starts -->
+                                <div class="panel-margin">
+                                    <p-accordionTab>
+                                        <p-header>
+                                            <span>{{panel_headers.real_video}}</span>
+                                            <!-- <gc-validation-icon [validation_status]="validation_flag.real_video"></gc-validation-icon> -->
+                                        </p-header>
+                                        <span *ngIf="MetaData">
+                                            <gc-real-video-setting
+                                                *ngIf="placementDetails && placementDetails.sic_site_setting"
+                                                [placementDetailsRealVideo]="placementDetails.sic_site_setting"
+                                                [disabled]="false" (RealVideo)=onUpdateSettings($event,10)>
+                                            </gc-real-video-setting>
+                                        </span>
+                                    </p-accordionTab>
+                                </div>
+                                <!--Real Video settings ends -->
+                                <!-- add user start-->
+                                <div class="panel-margin">
+                                    <p-accordionTab>
+                                        <p-header>
+                                            <span>Users</span>
+                                        </p-header>
+                                        <div class="userSetting">
+                                            <p class="ad_checkbox_label" *ngFor="let user of placement_users">
+                                                {{user.email}}
+                                            </p>
+                                            <span class="adUserMap" *ngIf="adUserFlag">
+                                                <i class="fa fa-plus" aria-hidden="true"></i> <span
+                                                    (click)="adUserFlag=!adUserFlag" class="adUser"> add
+                                                    user </span>
+                                            </span>
+                                            <span *ngIf="!adUserFlag" style="margin-left:16px">
+                                                <p-autoComplete [(ngModel)]="add_user" [inputStyle]="{'height':'30px'}"
+                                                    [suggestions]="filteredUsers" (completeMethod)="filterUsers($event)"
+                                                    [size]="40" placeholder="" [multiple]="false">
+                                                </p-autoComplete>
+                                                <span class="addUserBtn">
+                                                    <button class="btn addUsersBtn" (click)=addUser(this.add_user)> add user</button>
+                                                    <button class="btn cancelUserBtn"
+                                                        (click)="adUserFlag=!adUserFlag;add_user = '' ">
+                                                        cancel</button>
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </p-accordionTab>
+                                </div>
+                                <!-- add user ends-->
+                            </p-accordion>
+                        </div>
+                        <!-- data license start-->
+                        <div style="width:97.5%;margin-bottom:26px;">
+                            <div class="col-sm-12 col-lg-12  refreshLabel">
+                                <span class="col-sm-9">
+                                    <label class="input_fields_label adRefreshLabel">Data License</label>
+                                </span>
+                                <span class="refresh col-sm-3">
+                                    <span style="margin-right:5px;vertical-align: sub;font-size: 14px;">
+                                        <p-checkbox class="ad_checkboxes" [(ngModel)]="data_license_unrestricted"
+                                            (onChange)="checkDataLicense('unrestricted',data_license_unrestricted)"
+                                            binary="true">
+                                        </p-checkbox>
+                                        <label>Unrestricted</label>
+                                    </span>
+                                    <span style="margin-left:15px;vertical-align: sub;font-size: 14px;">
+                                        <p-checkbox class="ad_checkboxes" [(ngModel)]="data_license_cannot_use"
+                                            (onChange)="checkDataLicense('cannotuse',data_license_cannot_use)"
+                                            binary="true">
+                                        </p-checkbox>
+                                        <label>Cannot Use</label>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- data license ends-->
+                        <!-- ads refresh starts -->
+                        <div *ngIf="!new_placement" style="width:97.5%;">
+                            <div class="col-sm-12 col-lg-12  refreshLabel">
+                                <span class="col-sm-11">
+                                    <label class="input_fields_label adRefreshLabel">Ads refresh</label>
+                                </span>
+                                <span class="refresh col-sm-1">
+                                    <label class="switch" style="margin-top:5px;">
+                                        <input type="checkbox" [(ngModel)]="ads_refresh['enabled']">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- ads refresh ends -->
+                    </div>
+                    <div class="col-sm-12 mt-3">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button type="button" (click)=createUpdatePlacementSettings()
+                                    class="btn btn-danger save_settings_button">
+                                    {{savePlacementBtn}} </button>
+                                <button class="btn cancelPlacement" *ngIf="!this.new_placement || is_clone"
+                                    (click)="viewPlacementSettings()">
+                                    cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Ad product settings end here-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

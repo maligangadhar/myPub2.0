@@ -1,0 +1,218 @@
+@import '../../../../../styles/common_variables';
+
+.main {
+    height: 95%;
+}
+
+.layoutRightPanel {
+    background-color: white;
+    border-radius: 0px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 10px;
+    height: 100%;
+    margin: 0px -7px 8px -22px;
+    //width:530px;
+    //height:230px;
+
+    .row {
+        padding: 4px;
+    }
+
+    .first {
+        height: 60%;
+    }
+
+    .second {
+        height: 40% !important;
+        padding: 0px;
+    }
+
+    .label {
+        @extend .gibsonRegular;
+        color: #666666 !important;
+        font-size: 16px;
+        opacity: 0.6;
+        padding: 7px;
+    }
+
+    .GuidLabel {
+        @extend .gibsonLight;
+        color: #666666 !important;
+        font-size: 15px;
+        opacity: 0.7;
+        padding: 10px;
+    }
+
+    .dataLicence {
+        @extend .gibsonLight;
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .userPanel {
+        border: 1px solid #cccccc;
+        height: 200px;
+        border-radius: 5px;
+        padding: 14px;
+        height: 86%;
+        overflow-y: auto;
+    }
+}
+
+.leftPanel {
+    height: 100%;
+    border-color: 1px solid #cccccc;
+    padding: 0px 0px 0px 21px;
+
+    .layoutleftPanel {
+        overflow-y: auto;
+        background-color: white;
+        border-radius: 0px;
+        padding: 20px 0px 5px 10px;
+        margin-bottom: 2px;
+        //width:495px !important;
+        height: 620px !important;
+
+        .row {
+            padding: 4px;
+            margin-bottom: -10px;
+        }
+    }
+}
+
+.container {
+    height: 100%;
+}
+
+.form-group {
+    >label {
+        @extend .gibsonRegular;
+        color: #666666 !important;
+        font-size: 16px;
+        font-weight: 200;
+        opacity: 0.7;
+    }
+
+    >input {
+        @extend .gibsonRegular;
+        color: #666666 !important;
+        font-size: 16px;
+    }
+}
+
+.editAccountInfo {
+    @extend .gibsonLight;
+    border-radius: 30px;
+    margin-top: 6px;
+    padding: 0px;
+    width: 140px;
+    height: 25px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #EC2F3B;
+}
+
+.editAccountCancel {
+    @extend .gibsonLight;
+    border-radius: 30px;
+    margin-top: 6px;
+    padding: 0px;
+    width: 140px;
+    height: 25px;
+    font-size: 16px;
+    color: #ffffff;
+    margin-left: 5px;
+    background-color: #181529;
+}
+
+.selectedSite {
+    @extend .gibsonRegular;
+    vertical-align: bottom;
+    font-size: 17px;
+    padding: 0px 0px 0px 44px;
+}
+
+.viewMode {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.spInfo {
+    margin-bottom: 0px !important;
+}
+
+.detailHeader {
+    height: 60px;
+    padding: 19px 23px 17px 12px;
+
+    .banner {
+        float: right;
+        font-weight: 500;
+    }
+
+    .leftBanner {
+        float: left;
+        font-weight: 440;
+    }
+}
+
+.placementContainer {
+    overflow-y: auto;
+    max-height: 476px;
+    //padding: 0px 35px 0px 0px;
+
+    .placement {
+        @extend .gibsonRegular;
+        color: #666666 !important;
+        font-size: 15px;
+        max-height: 340px !important;
+    }
+}
+
+.viewAllGuid {
+    @extend .gibsonLight;
+    color: #666666 !important;
+    font-size: 15px;
+    float: right;
+    cursor: pointer;
+}
+
+.label {
+    @extend .gibsonLight;
+    color: #666666 !important;
+    font-size: 16px;
+    font-weight: 600;
+    opacity: 0.7;
+}
+
+.createGuid {
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.placementItems {
+    @extend .gibsonLight;
+    font-size: 15px;
+    color: deepskyblue;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.partnerType {
+    font-weight: bold;
+    color: black;
+    padding: 3px;
+    opacity: 1;
+    font-size: 14px;
+}
+
+.partnerAccount {
+    height: 275px !important;
+}
+.supplyPartnerLink {
+    font-size: 15px;
+    color: deepskyblue;
+    font-weight: normal;
+    cursor: pointer;
+}

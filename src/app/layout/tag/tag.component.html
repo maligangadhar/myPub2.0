@@ -1,0 +1,103 @@
+<div [style.height.px]="tagContainerHeight">
+    <div *ngIf="msgs">
+        <p-messages [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'1000ms'" [(value)]="msgs" [closable]="true"></p-messages>
+    </div>
+    <div class="row" [style.height.px]="tagInnerContainerHeight">
+        <div class="tagContainer">
+            <div class="content">
+                <div>
+                    Enter guids you want to generate tags for under the textbox labelled GUID(s).If you want to create
+                    tags
+                    for multiple guids,
+                    please seperate the guids by a new line. You can only select one tag type at a time.
+                </div>
+                <div class="second">
+                    For SIAB tags: You can create multiple sizes for each guid entered by checking multiple sizes.
+                </div>
+                <div class="third">
+                    All tags and rules found here <a target="_blank" href="https://docs.google.com/document/d/1IwNsnZ4wYdYBt9ZvVeKeQi2DSdVrB_Rykzz3cWyJ1eM/edit">Publisher
+                        Tags</a>
+                </div>
+                <span>Enter GUID(s)</span>
+                <div>
+                    <textarea pInputTextarea [rows]="5" [cols]="140" [(ngModel)]="guid"></textarea>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mt-2">
+                        <label>
+                            <p-radioButton name="productType" value="infeed" label="infeed" [(ngModel)]="tagtype"></p-radioButton>
+                        </label>
+                        <label class="tagLabel">
+                            <p-radioButton name="productType" value="infeed_selector" [(ngModel)]="tagtype" label="infeed selector"></p-radioButton>
+                        </label>
+                        <label class="tagLabel">
+                            <p-radioButton name="productType" value="infeed_custom" [(ngModel)]="tagtype" label="infeed custom (Use if multiple tags are deployed omn page or DFP sync mode AND multiple GUIDs)"></p-radioButton>
+                        </label>
+                    </div>
+                    <div class="col-md-12">
+                        <label>
+                            <p-radioButton name="productType" value="onpage" [(ngModel)]="tagtype" label="ti (on page-in-view)"></p-radioButton>
+                        </label>
+                        <label class="tagLabel">
+                            <p-radioButton name="productType" value="adserver" [(ngModel)]="tagtype" label="rvic (adserver-in-view)"></p-radioButton>
+                        </label>
+                        <label class="tagLabel">
+                            <p-radioButton name="productType" [(ngModel)]="tagtype" value="mediationserver" label="mediation (ad server in-view)"></p-radioButton>
+                        </label>
+                        <label class="tagLabel">
+                            <p-radioButton name="productType" [(ngModel)]="tagtype" value="mediationonpage" label="mediation (on page in-view)"></p-radioButton>
+                        </label>
+                    </div>
+                    <div class="col-md-12">
+                        <label>
+                            <p-radioButton name="productType" [(ngModel)]="tagtype" value="siab" label="siab"></p-radioButton>
+                        </label>
+                        <label class="tagLabel">
+                            <p-radioButton name="productType" [(ngModel)]="tagtype" value="siab_custom" label="siab custom (use if multiple tags are deployed onpage or DFP sync mode AND multiple guids)"></p-radioButton>
+                        </label>
+                    </div>
+                </div>
+                <div class="row" *ngIf="tagtype==='siab' || tagtype==='siab_custom'">
+                    <div class="col-md-12">
+                        <label>
+                            <p-radioButton name="siab" value="970x250" label="970x250 (desktop)" [(ngModel)]="siabtype"></p-radioButton>
+                        </label>
+                        <label class="tagLabel">
+                            <p-radioButton name="siab" value="180x150" [(ngModel)]="siabtype" label="180x150 (desktop)"></p-radioButton>
+                        </label>
+                        <label class="tagLabel">
+                            <p-radioButton name="siab" value="728x90" [(ngModel)]="siabtype" label="728x90 (desktop,tablet)"></p-radioButton>
+                        </label>
+                        <label class="tagLabel">
+                            <p-radioButton name="siab" value="300x600" [(ngModel)]="siabtype" label="300x600 (desktop,tablet)"></p-radioButton>
+                        </label>
+                    </div>
+                    <div class="col-md-12">
+                        <label>
+                            <p-radioButton name="siab" value="300x250" label="300x250 (desktop,tablet,mobile)"
+                                [(ngModel)]="siabtype"></p-radioButton>
+                        </label>
+                        <label class="tagLabel">
+                            <p-radioButton name="siab" value="160x600" [(ngModel)]="siabtype" label="160x600 (desktop,tablet)"></p-radioButton>
+                        </label>
+                        <label class="tagLabel">
+                            <p-radioButton name="siab" value="320x50" label="320x50 (mobile)" [(ngModel)]="siabtype"></p-radioButton>
+                        </label>
+                        <label class="tagLabel">
+                            <p-radioButton name="siab" value="300x50" [(ngModel)]="siabtype" label="300x50 (mobile)"></p-radioButton>
+                        </label>
+                    </div>
+                </div>
+                <button type="button" class="btn genTagBtn" (click)=generateTags()>Generate tags</button>
+                <div class="guidResult">
+                    <textarea pInputTextarea [rows]="8" [cols]="140" [(ngModel)]="guidResult"></textarea>
+                </div>
+                <div class="mt-2">
+                    <button type="button" class="btn genTagBtn" (click)=clearTags()>Clear tags</button>
+                    <button type="button" [disabled]="!guidResult" class="btn genTagBtn downloadBtn" (click)=downloadScript()>Download
+                        script</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

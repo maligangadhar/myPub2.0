@@ -1,0 +1,97 @@
+<div *ngIf="msgs">
+    <p-messages [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'1000ms'" [(value)]="msgs" [closable]="true"></p-messages>
+</div>
+<div class="siteContainer">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-8 searchHeader">
+            <strong>Account Activity</strong>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+            <div>
+                <div class="input-group col-md-12 pr-0">
+                    <input [(ngModel)]="searchText" (keyup)=updateRowCount() type="text" class="form-control searchSupplyBar"
+                        placeholder="Search" #search />
+                    <span class="input-group-btn">
+                        <button class="btn searchButton" (click)="onSearch(search.value)" type="button">
+                            <i class="fa fa-times" (click)="onClearSearch()" *ngIf="searchText.length>0"></i>
+                            <i class="fa fa-search ml-1"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="searchItems">
+        <div *ngIf="searchDetailsLoading" class="pubLoading">
+            <div class="loadingSpinner"></div>
+        </div>
+        <div *ngIf="!searchDetailsLoading">
+            <div class="spDetails">
+                <div class="spContainer">
+                    <table class="searchTable" [style.height.px]="height" cellspacing="10" cellspadding="10">
+                        <div class="search-results">
+                            <thead>
+                                <tr class="supplyChainTableColumn">
+                                    <th class="accountActivity userColumn">
+                                        User
+                                    </th>
+                                    <th class="accountActivity">
+                                        Site Url
+                                    </th>
+                                    <th class="accountActivity">
+                                        Placement
+                                    </th>
+                                    <th class="accountActivity updatedColumn">
+                                        Updated
+                                    </th>
+                                    <th class="accountActivity">
+                                        Time/date
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="activityTableBody" *ngIf="displayactivityDetails">
+                                <gc-no-results [rowCount]="rowCount" [searchText]="searchText"></gc-no-results>
+                                <tr *ngFor="let site of displayactivityDetails | grdFilter: {email: searchText, site_url:searchText,guid:searchText}">
+                                    <td class="accountActivity userColumn">
+                                        <p class="mb-0 activityColumn">
+                                            <a [routerLinkActive]="['router-link-active']">
+                                                <p (click)="onSiteView(site)">{{ site.email }}</p>
+                                            </a>
+                                        </p>
+                                    </td>
+                                    <td class="accountActivity">
+                                        <p class="mb-0 activityColumn">
+                                            {{ site.site_url }}
+                                        </p>
+                                    </td>
+                                    <td class="accountActivity">
+                                        <p class="mb-0 activityColumn">
+                                            {{ site.guid }}
+                                        </p>
+                                    </td>
+                                    <td class="accountActivity">
+                                        <p class="mb-0 activityColumn updatedColumn">
+                                            {{ site.updated | json }}
+                                        </p>
+                                    </td>
+                                    <td class="accountActivity">
+                                        <p class="mb-0 activityColumn createdColumn">
+                                            {{ site.created_at }}
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </div>
+                    </table>
+                </div>
+            </div>
+            <div *ngIf="displayactivityDetails" class="paginator">
+                <p-paginator [rows]="100" [totalRecords]="totalRecords" (onPageChange)="paginate($event)"></p-paginator>
+            </div>
+        </div>
+        <ng-template #noData>
+
+        </ng-template>
+    </div>
+</div>

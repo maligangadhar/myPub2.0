@@ -1,0 +1,142 @@
+@import './common_variables';
+
+body .ui-accordion .ui-accordion-header a {
+    @extend .gibsonLight;
+    background-color: #f4f4f4 !important;
+    border: none !important;
+    font-size: 15px;
+    color: #000000 !important;
+    opacity: 0.6;
+}
+
+body .ui-accordion .ui-accordion-header a .ui-accordion-toggle-icon {
+    width: 10px;
+    height: 13px;
+    color: #000000 !important;
+    float: right;
+}
+
+body .ui-accordion .ui-accordion-header a:focus {
+    outline: none;
+}
+
+body .ui-accordion .ui-accordion-content {
+    border: none !important;
+}
+
+.ui-chkbox-box {
+    width: 14px !important;
+    height: 14px !important;
+}
+
+.ui-chkbox-icon {
+    font-size: 13px !important;
+}
+
+body .ui-message.ui-message-error {
+    width: 100%;
+}
+
+body .ui-radiobutton .ui-radiobutton-box {
+    width: 14px !important;
+    height: 14px !important;
+}
+
+body .ui-radiobutton .ui-radiobutton-box .ui-radiobutton-icon {
+    width: 8px !important;
+    height: 8px !important;
+    margin-left: -4px !important;
+    margin-top: -4px !important;
+}
+
+body .ui-radiobutton-label {
+    margin: -7px 0 0 .2em !important;
+}
+
+.ui-chkbox-box {
+    width: 14px !important;
+    height: 14px !important;
+}
+
+.ui-chkbox-icon {
+    font-size: 13px !important;
+}
+
+body .ui-message.ui-message-error {
+    width: 100%;
+}
+
+body .ui-paginator {
+    background-color: rgb(246, 246, 246) !important;
+    border: 0px !important;
+}
+
+body .ui-radiobutton .ui-radiobutton-box .ui-radiobutton-icon {
+    width: 0px !important;
+    height: 0px !important;
+}
+
+body .ui-messages.ui-messages-info {
+    background-color: #89F784 !important;
+}
+
+body .ui-chkbox .ui-chkbox-box.ui-state-active {
+    background-color: #89F784 !important;
+    border: none !important;
+}
+
+body .ui-chkbox {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    width: 20px;
+    height: 20px;
+    padding-top: 2px;
+}
+
+body .ui-listbox {
+    width: 100%;
+}
+
+body .ui-listbox .ui-listbox-list {
+    max-height: 260px;
+}
+
+body .ui-overlaypanel {
+    top: 27px !important;
+    left: 18px !important;
+    height: 20px !important;
+    width: 92%;
+    border: 0px !important;
+    background-color: none !important;
+}
+
+.ui-shadow {
+    box-shadow: none !important;
+}
+
+body .ui-widget {
+    font-family: $gibsonFontFamily;
+    font-size: 16px !important;
+}
+
+body .ui-listbox .ui-listbox-footer {
+    border-top: 2px solid #cccccc !important;
+}
+
+body .ui-listbox .ui-listbox-list {
+    @extend .gibsonRegular;
+    font-size: 14px;
+    color: #666666;
+}
+
+.ui-state-disabled {
+    opacity: 1 !important;
+}
+
+button,
+html [type="button"],
+[type="reset"],
+[type="submit"] {
+    -webkit-appearance: none;
+}

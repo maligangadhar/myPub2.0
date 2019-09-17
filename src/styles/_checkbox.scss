@@ -1,0 +1,48 @@
+input[type=checkbox] {
+  -moz-appearance: none;
+}
+
+input[type=checkbox] {
+  margin-bottom: -4px;
+  position: relative;
+  visibility: hidden;
+  cursor: pointer;
+}
+
+input[type=checkbox]:after {
+  display: block;
+  content: "";
+  visibility: visible;
+  height: 14px;
+  width: 14px;
+  border-radius: 4px;
+  border: 1px solid #c8c8c8;
+  text-align: center;
+  background: white;
+  color: #fff;
+  font-family: FontAwesome;
+  font-weight: 100;
+  cursor: pointer;
+}
+
+input[type=checkbox]:checked:after {
+  background:#00F900;
+  border: none;
+  box-sizing: border-box;
+  color:white;
+  content: "\f00c";
+  font-size: 9px;
+}
+
+input[type=checkbox].placementCheckbox:checked:after {
+  background:#00F900;
+  border: none;
+  border: 1px solid #c8c8c8;
+  box-sizing: border-box;
+  color:white;
+  content: "\f00c";
+  font-size: 9px;
+  height: 14px;
+  padding-top: 1px;
+  width: 14px;
+}

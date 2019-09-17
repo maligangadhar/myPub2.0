@@ -1,0 +1,45 @@
+<div class="col-sm-12 pl-0" *ngIf="inViewPassback && inViewPassback.desktopPassback">
+  <div class="card-body p-0">
+    <div class="row margin-row">
+      <div class="col-sm-3 pl-0">
+        <label class="ad_checkbox_label pl-0">
+          Inview Desktop Passback Tag
+        </label>
+      </div>
+      <div class="col-sm-9 pl-0">
+        <input type="text" class="col-sm-6 form-control passbackTagInputFields" (ngModelChange)="updateTagValue($event,1)"
+          [(ngModel)]="desktopPassbackTagValue" />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-sm-12 pl-0" *ngIf="inViewPassback && inViewPassback.tabletPassback">
+  <div class="card-body p-0">
+    <div class="row margin-row">
+      <div class="col-sm-3 pl-0">
+        <label class="ad_checkbox_label pl-0">
+          Inview Tablet Passback Tag
+        </label>
+      </div>
+      <div class="col-sm-9 pl-0">
+        <input type="text" class="col-sm-6 form-control form-control passbackTagInputFields" (ngModelChange)="updateTagValue($event,2)"
+          [(ngModel)]="tabletPassbackTagValue" />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-sm-12 pl-0" *ngIf="inViewPassback && inViewPassback.phonePassback">
+  <div class="card-body p-0">
+    <div class="row margin-row">
+      <div class="col-sm-3 pl-0">
+        <label class="ad_checkbox_label pl-0">
+          Inview Phone Passback Tag
+        </label>
+      </div>
+      <div class="col-sm-9 pl-0">
+        <input type="text" class="col-sm-6 form-control form-control passbackTagInputFields" (ngModelChange)="updateTagValue($event,3)"
+          [(ngModel)]="phonePassbackTagValue" />
+      </div>
+    </div>
+  </div>
+</div>

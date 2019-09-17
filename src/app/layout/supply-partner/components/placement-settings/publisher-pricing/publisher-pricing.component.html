@@ -1,0 +1,38 @@
+<div>
+    <div class="row margin-row">
+        <div class="col-sm-1 pl-3 pt-1 p-0">
+          <label class="ad_checkbox_label p-0 pb-3"> Tier 1</label>
+        </div>
+        <div class="col-sm-2 p-0">
+            <div class="row">
+              <input type="number" [(ngModel)]="publisherDetails.tier_1"
+                 (ngModelChange)="tier_change()"
+                class="form-control col-sm-6 input_fields p-0" id="tier-1">
+            </div>
+        </div>
+    </div>
+    <div class="row margin-row">
+        <div class="col-sm-1 pl-3 pt-1 p-0">
+          <label class="ad_checkbox_label p-0 pb-3"> Tier 2</label>
+        </div>
+        <div class="col-sm-2 p-0">
+            <div class="row">
+              <input type="number" [(ngModel)]="publisherDetails.tier_2"
+                (ngModelChange)="tier_change()"
+                class="form-control col-sm-6 input_fields p-0" id="tier-2">
+            </div>
+        </div>
+    </div>
+    <div class="row margin-row">
+        <div class="col-sm-1 pl-3 pt-1 p-0">
+          <label class="ad_checkbox_label p-0"> Tier 3</label>
+        </div>
+        <div class="col-sm-2 p-0">
+            <div class="row">
+              <input type="number" [(ngModel)]="publisherDetails.tier_3"
+                 (ngModelChange)="tier_change()"
+                class="form-control col-sm-6 input_fields p-0" id="tier-3">
+            </div>
+        </div>
+    </div>
+</div>

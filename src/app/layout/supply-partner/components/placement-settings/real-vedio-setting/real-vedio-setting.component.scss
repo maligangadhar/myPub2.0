@@ -1,0 +1,55 @@
+@import '../../../../../../styles/adsettings';
+@import '../../../../../../styles/common_variables';
+
+.banner {
+    float: right;
+}
+
+.detailHeader {
+    height: 60px;
+    padding: 16px;
+}
+
+.leftBanner {
+    padding: 4px;
+    font-weight: 600;
+}
+
+.realVideo {
+    width: 100%;
+    border: 0px solid #cccccc;
+    background-color: white;
+    border-radius: 1px;
+    padding: 20px 0 20px 20px;
+    border-bottom: 0px solid #cccccc;
+}
+
+.form-control {
+    height: 60%;
+    width: 60%
+}
+
+.editBtn {
+    .saveSetting {
+        @extend .gibsonLight;
+        border-radius: 30px;
+        margin-top: 6px;
+        padding: 0px;
+        width: 140px;
+        height: 25px;
+        font-size: 16px;
+        color: #ffffff;
+        background-color: #EC2F3B;
+    }
+
+    padding:5px;
+}
+
+.dropdown_fields {
+    font-size: 14px;
+    height: 90% !important;
+}
+
+.max_duration {
+    height: 65% !important;
+}

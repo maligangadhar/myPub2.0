@@ -1,0 +1,62 @@
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
+    <div *ngIf="!loginFlag" class="list-group sidebarList">
+        <a (click)="navToSupplyPartner()" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <span [ngStyle]="{'color': (router.url.split('?')[0] == 'sp') || router.url.split('?')[0] =='/' || router.url.split('?')[0] =='/spDetail' ? 'red' : ''}">
+                {{ 'Supply Partners' }}</span> 
+        </a>
+        <a (click)="navToPlacement()" *ngIf="adSettingFlag" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <span [ngStyle]="{'color': (router.url.split('?')[0] == '/viewAllSites') || (router.url.split('?')[0] == '/placementSettings') || (router.url.split('?')[0] == '/placements') ? 'red' : '' } ">
+                {{ 'Placement Settings ' }} </span>
+        </a>
+        <a routerLink="/tag" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <span> {{ 'Tag Management' }}</span>
+        </a>
+        <a (click)="navToReporting()" class="list-group-item">
+            <span>
+                {{ 'Reporting ' }} </span>
+        </a>
+        <div class="nested-menu">
+            <a routerLink="/activity" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <span (click)="addExpandClass('pages')"> {{ 'Account Activity' }}</span>
+            </a>
+            <li class="nested" [class.expand]="router.url.split('?')[0] == '/activity' || router.url.split('?')[0] == '/messages' || router.url.split('?')[0] == '/banGuid'">
+                <ul class="submenu">
+                    <li>
+                        <a routerLink="/messages" [routerLinkActive]="['router-link-active']">
+                            <span [ngStyle]="{'color': router.url.split('?')[0] == '/messages' ? 'red' :''}">{{
+                                'Messages'}}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/banGuid" [routerLinkActive]="['router-link-active']">
+                            <span [ngStyle]="{'color': router.url.split('?')[0] == '/banGuid' ? 'red' :''}">{{
+                                'Ban Placement'}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </div>
+         <a routerLink="/users" [routerLinkActive]="['router-link-active']" class="list-group-item">
+             <span> {{ 'Users' }}</span>
+         </a>
+    </div>
+</nav>
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Confirmation</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+                {{dialog_box_content}}
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="modal.close(1)">Yes</button>
+        <button type="button" class="btn btn-danger" (click)="modal.close(0)">No</button>
+    </div>
+</ng-template>

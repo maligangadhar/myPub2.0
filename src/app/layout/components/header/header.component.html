@@ -1,0 +1,59 @@
+<nav class="navbar navbar-expand-lg fixed-top adminNavbar">
+    <a class="navbar-brand"><img (click)="refreshPage()" class="logo"
+            src="assets/images/33x-ground-control-logo.svg"></a>
+    <button class="navbar-toggler" type="button" (click)="toggleSidebar()">
+        <i class="fa fa-bars text-muted" aria-hidden="true"></i>
+    </button>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto" *ngIf="!loginFlag">
+            <li>
+                <ng-template #content let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Confirmation</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss(0)">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                {{dialog_box_content}}
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" (click)="modal.close(1)">Yes</button>
+                        <button type="button" class="btn btn-danger" (click)="modal.close(0)">No</button>
+                    </div>
+                </ng-template>
+                <div class="input-group col-md-12 pt-1">
+                    <input [(ngModel)]="globalSearchText" type="text" class="form-control searchSupplyBar"
+                        (keyup.enter)="onSearch()" #search />
+                    <span class="input-group-btn">
+                        <span class="btn searchButton" type="button">
+                            <span class="fa fa-times pull-left searchClear" (click)="onClearSearch()" *ngIf="globalSearchText.length>0"></span>
+                            <span class="fa fa-search searchIcon" (click)="onSearch()"></span>
+                        </span>
+                    </span>
+                </div>
+            </li>
+            <li class="marginLeft">
+                <button type="button" class="btn createAccount" (click)=addNewSupplyPartner()>Create supply
+                    partner</button>
+            </li>
+            <li class="nav-item dropdown marginLeft" ngbDropdown>
+                <a href="javascript:void(0)" class="nav-link"  *ngIf="logginUSer" ngbDropdownToggle>
+                    <span> {{logginUSer}} </span><b class="caret"></b>
+                </a>
+                <a href="javascript:void(0)" class="nav-link" *ngIf="!logginUSer" ngbDropdownToggle>
+                    <span class="" style="color:#181529"> Not logged in user</span><b class="caret"></b>
+                </a>
+                <div class="dropdown-menu-right"   ngbDropdownMenu>
+                    <a class="dropdown-item" style="cursor:pointer;" (click)="onLoggedout()">
+                        <i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' }}
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,9 @@
+<div *ngIf="(displaySiteDetails && displaySiteDetails.length == 0) || (rowCount == 0 && searchText.length > 0)">
+    <div>No results for "
+        <span *ngIf="displaySiteDetails && displaySiteDetails.length == 0; else searchTextTemplate">{{globalSearchText}}</span>
+        "</div>
+</div>
+
+<ng-template #searchTextTemplate>
+    {{searchText}}
+</ng-template>

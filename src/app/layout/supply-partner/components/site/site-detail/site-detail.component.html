@@ -1,0 +1,153 @@
+<div *ngIf="siteDetailsLoading" class="pubLoading">
+    <div class="loadingSpinner"></div>
+</div>
+<div *ngIf="msgs">
+    <p-messages [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'1000ms'" [(value)]="msgs" [closable]="true">
+    </p-messages>
+</div>
+<div *ngIf="!siteDetailsLoading">
+    <div class="col-sm-12 detailHeader">
+        <div class="d-inline selectedSite leftBanner">
+            <div class="d-inline selectedSite leftBanner">
+                <a [routerLinkActive]="['router-link-active']">
+                    <span class="spNav" (click)="goBackToDetailPage()">
+                        {{spName}} </span>
+                </a>
+            </div>
+            <span class="editBtn">
+                <button class="btn editGUID" *ngIf="!sicBanned" (click)="editAddSetting()">Edit Placement</button>
+                <button class="btn banPlacementMessage" *ngIf="sicBanned">This placement is currently banned</button>
+                <button class="btn editGUID" style="margin-left:10px;width:100px;background-color: #000000 !important"
+                    (click)="clonePlacementSettings()"><i class="fa fa-clone fa-7x"></i> Copy</button>
+            </span>
+        </div>
+        <div class="banner">
+            <strong> Supply Partner ID: </strong>{{spId}}
+        </div>
+    </div>
+
+    <div style="padding-right: 5px">
+        <div class="setting">
+            <div class="label">
+                Placement Name : <span class="settingItem" *ngIf="name"> {{name}}</span>
+            </div>
+            <div class="label">
+                Data License : <span class="settingItem" *ngIf="dataLicense"> {{dataLicense}}</span>
+            </div>
+            <div class="label">
+                GUID : <span class="settingItem" *ngIf="guid">{{guid}} </span>
+            </div>
+            <div class="label">
+                Tag Type : <span class="settingItem">
+                    {{placementDetails.sic_site_setting.install_method}}
+                </span>
+            </div>
+            <div *ngIf="inviewAdUnits">
+                <div class="label">
+                    Ad Type : <span class="settingItem"> Inview </span>
+                </div>
+                <div class="label">
+                    Ad Size : <span class="settingItem"> {{inviewAdUnits}} </span>
+                </div>
+            </div>
+            <div *ngIf="infeedAdUnits">
+                <div class="label">
+                    Ad Type : <span class="settingItem"> Infeed </span>
+                </div>
+                <div class="label">
+                    Ad Size : <span class="settingItem"> {{infeedAdUnits}} </span>
+                </div>
+            </div>
+            <div *ngIf="siabAdUnits">
+                <div class="label">
+                    Ad Type : <span class="settingItem"> SIAB </span>
+                </div>
+                <div class="label">
+                    Ad Size : <span class="settingItem"> {{siabAdUnits}} </span>
+                </div>
+            </div>
+            <div class="label">
+                <div>
+                    Passback Tags:
+                </div>
+                <div class="mt-4" *ngIf="infeedPassbackFlag.desktopPassback ">
+                    <span>Infeed Desktop passback : <span class="settingItem">
+                            {{placementDetails.sic_site_setting.infeed_desktop_passback}}
+                        </span></span>
+                </div>
+                <div class="mt-4"
+                    *ngIf="infeedPassbackFlag.phonePassback && placementDetails.sic_site_setting.infeed_mobile_passback">
+                    <span> Infeed Mobile passback : <span class="settingItem">
+                            {{placementDetails.sic_site_setting.infeed_mobile_passback}}</span></span>
+                </div>
+                <div class="mt-4"
+                    *ngIf="inviewPassbackFlag.desktopPassback && placementDetails.sic_site_setting.inview_desktop_passback">
+                    <span> Inview Desktop passback : <span class="settingItem">
+                            {{placementDetails.sic_site_setting.inview_desktop_passback}}</span></span>
+                </div>
+                <div class="mt-4"
+                    *ngIf="inviewPassbackFlag.tabletPassback && placementDetails.sic_site_setting.inview_tablet_passback">
+                    <span> Inview Tablet passback : <span class="settingItem">
+                            {{placementDetails.sic_site_setting.inview_tablet_passback}}</span></span>
+                </div>
+                <div class="mt-4"
+                    *ngIf="inviewPassbackFlag.phonePassback && placementDetails.sic_site_setting.inview_mobile_passback">
+                    <span>Inview Mobile passback : <span class="settingItem">
+                            {{placementDetails.sic_site_setting.inview_mobile_passback}}</span></span>
+                </div>
+                <div *ngIf="placementDetails">
+                    <div class="mt-4"
+                        *ngFor="let ad_unit of placementDetails.ad_settings['Standard Display']['desktop']">
+                        <span *ngIf="ad_unit.enabled">SIAB {{ad_unit.size}} desktop passback: <span
+                                class="settingItem">{{ad_unit.passback_tag}}</span></span>
+                    </div>
+                    <div class="mt-4"
+                        *ngFor="let ad_unit of placementDetails.ad_settings['Standard Display']['tablet']">
+                        <span *ngIf="ad_unit.enabled">SIAB {{ad_unit.size}} tablet passback: <span
+                                class="settingItem">{{ad_unit.passback_tag}}</span></span>
+                    </div>
+                    <div class="mt-4"
+                        *ngFor="let ad_unit of placementDetails.ad_settings['Standard Display']['mobile']">
+                        <span *ngIf="ad_unit.enabled">SIAB {{ad_unit.size}} mobile passback: <span
+                                class="settingItem">{{ad_unit.passback_tag}}</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="padding-right: 7px;">
+        <gc-client-side-setting *ngIf="placementDetails && placementDetails.header_bidding_option"
+            [placementDetailsClientSide]="placementDetails.header_bidding_option" [disabled]="disabled">
+        </gc-client-side-setting>
+    </div>
+    <div style="padding-right: 3px;">
+        <gc-real-video-setting *ngIf="placementDetails && placementDetails.sic_site_setting"
+            [placementDetailsRealVideo]="placementDetails.sic_site_setting" [disabled]="disabled">
+        </gc-real-video-setting>
+    </div>
+    <div style="padding-right: 3px;" class="users" *ngIf="placementDetails && placementDetails.users">
+        <div class="userDetails">
+            <div class="user_label">Users </div>
+            <p class="ad_checkbox_label p-0" *ngFor="let user of placementDetails.users">
+                {{user.email}}
+            </p>
+        </div>
+    </div>
+    <span class="editBtn">
+        <button class="btn banPlacement" *ngIf="!sicBanned" (click)="banPlacement(content)">Ban
+            Placement</button>
+    </span>
+</div>
+<ng-template #content let-modal>
+    <div class="modal-body">
+        <div class="form-group">
+            <label>Reason for ban <font color="red">*</font></label>
+            <input type="text" [(ngModel)]="reasonForBan" class="form-control pl-2" />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn createAccount" [disabled]="!reasonForBan" (click)="modal.close(1)">Ban
+            placement</button>
+        <button type="button" class="btn createAccount" (click)="modal.close(0)">Cancel</button>
+    </div>
+</ng-template>

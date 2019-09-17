@@ -1,0 +1,41 @@
+<div class="sdSetting mr-0 pb-0">
+    <div class="container" (change)=onCheckBoxClick()>
+        <div class="col-md-12 p-0 m-0">
+            <div class="csSettinglabel p-0" *ngIf="!showSelectAll == true" style="margin-left:-5px;">Real Video
+                Settings</div>
+            <div class="row mt-4 mb-4" *ngIf="placementDetailsRealVideo">
+                <div class="col-md-3">
+                    <label class="ad_checkbox_label p-0 m-0">Real Video Enabled</label>
+                </div>
+                <div class="col-md-3" (click)=onCheckBoxClick()>
+                    <p-checkbox [(ngModel)]="placementDetailsRealVideo.video_enabled" binary="true" [disabled]="disabled"></p-checkbox>
+                    <div class="checkbox">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label class="ad_checkbox_label p-0 m-0">LKQD Enabled</label>
+                </div>
+                <div class="col-md-3" (click)=onCheckBoxClick() *ngIf="placementDetailsRealVideo">
+                    <p-checkbox [(ngModel)]="placementDetailsRealVideo.lkqd_enabled" binary="true" [disabled]="disabled"></p-checkbox>
+                    <div class="checkbox">
+                    </div>
+                </div>
+                <div class="col-md-3 mt-4">
+                    <label class="ad_checkbox_label p-0 m-0">Spotx Channel ID</label>
+                </div>
+                <div class="col-md-3 mt-4">
+                    <input type="text" [(ngModel)]="placementDetailsRealVideo.spotx_channel_id" class="form-control input_fields"
+                        id="placement-name" style="padding:8px;" [disabled]="disabled">
+                </div>
+                <div class="col-md-3 mt-4">
+                    <label class="ad_checkbox_label p-0 m-0">Maximum duration</label>
+                </div>
+                <div class="col-md-3 mt-4" *ngIf="placementDetailsRealVideo">
+                    <select class="form-control input_fields dropdown_fields max_duration" [(ngModel)]="placementDetailsRealVideo.video_max_duration"
+                        id="tag-type" [disabled]="disabled">
+                        <option *ngFor="let tag of maxDurationList" [value]="tag.value">{{tag.name}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>

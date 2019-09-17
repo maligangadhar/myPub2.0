@@ -1,0 +1,50 @@
+<div *ngIf="InfeedVideoPlacementSettings" (change)=onChange()>
+    <div class="col-sm-12 card border-0">
+        <div class="col-sm-12 pl-0">
+            <div class="">
+                <div class="row pl-0 margin-row">
+                    <div class="col-sm-3 pl-0">
+                        <label class="ad_checkbox_label pl-0"> Desktop</label>
+                    </div>
+                    <div class="col-sm-9 pl-0">
+                        <p-checkbox [(ngModel)]="infeed_video_settings.desktop" (ngModelChange)=onChange() binary="true"></p-checkbox>
+                    </div>
+                </div>
+                <div class="row pl-0 margin-row">
+                    <div class="col-sm-3 pl-0">
+                        <label class="ad_checkbox_label pl-0"> Desktop Sound off/on</label>
+                    </div>
+                    <div class="col-sm-9 pl-0">
+                        <label class="switch">
+                            <input type="checkbox" [(ngModel)]="infeed_video_settings.desktop_sound" (ngModelChange)=onChange()>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="row pl-0">
+                    <div class="col-sm-3 pl-0">
+                        <label class="ad_checkbox_label pl-0">
+                            Mobile</label>
+                    </div>
+                    <div class="col-sm-9 p-0" >
+                        <p-checkbox  [(ngModel)]="infeed_video_settings.mobile" (ngModelChange)=onChange() binary="true"></p-checkbox>
+                    </div>
+                </div>
+                <div class="row pl-0">
+                    <div class="col-sm-3 p-0">
+                        <label class="ad_checkbox_label pl-0"> Mobile Sound
+                            off/on</label>
+                    </div>
+                    <div class="col-sm-9 p-0">
+                        <label class="switch">
+                            <input class="ad_checkboxes ad_checkbox" type="checkbox" [(ngModel)]="infeed_video_settings.mobile_sound" (ngModelChange)=onChange() >
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+                <gc-infeed-passback [inFeedPassback]="inFeedPassback"></gc-infeed-passback>
+            </div>
+        </div>
+    </div>
+</div>

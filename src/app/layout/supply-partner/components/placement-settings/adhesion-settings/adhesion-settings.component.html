@@ -1,0 +1,94 @@
+<div *ngIf="AdhesionPlacementDetails" (change)=onCheckBoxClick()>
+    <div class="col-sm-12  border-0">
+        <div class="col-sm-12 p-0">
+            <div class="col-sm-12 p-0">
+                <div class="card-body p-1">
+                    <div class="row">
+                        <div class="col-sm-11 float-left pl-0">
+                        </div>
+                        <div class="col-sm-1 float-right pl-0">
+                            <button type="button" *ngIf="!showDeselectButton" class="btn btn-primary select_all_button"
+                                (click)=selectAll()>Select
+                                all</button>
+                            <button type="button" *ngIf="showDeselectButton" class="btn btn-primary select_all_button de_select_all"
+                                (click)=deSelectAll()>Deselect all</button>
+                        </div>
+                    </div>
+                    <div class="row margin-row">
+                        <div class="col-sm-3 p-0">
+                            <label class="ad_checkbox_label p-0"> Desktop</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <span *ngFor="let size of AdhesionDesktopList">
+                                    <gc-sp-checkbox (selected)="onCheckBoxClick()" [size]="size"></gc-sp-checkbox>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 p-0">
+                <div class="card-body p-1">
+                    <div class="row margin-row">
+                        <div class="col-sm-3 p-0">
+                            <label class="ad_checkbox_label p-0"> Tablet</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <span *ngFor="let size of AdhesionTabletList">
+                                    <gc-sp-checkbox (selected)="onCheckBoxClick()" [size]="size"></gc-sp-checkbox>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 p-0">
+                <div class="card-body p-1">
+                    <div class="row margin-row">
+                        <div class="col-sm-3 p-0">
+                            <label class="ad_checkbox_label p-0"> Phone</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <span *ngFor="let size of AdhesionMobileList">
+                                    <gc-sp-checkbox (selected)="onCheckBoxClick()" [size]="size"></gc-sp-checkbox>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 p-0">
+                <div class="card-body" style="padding: 0px 0px 0px 4px">
+                    <div class="row margin-row">
+                        <div class="col-sm-3 pl-0">
+                            <label class="ad_checkbox_label pl-0"> Adhesion bottom margin</label>
+                        </div>
+                        <div class="col-sm-9 p-0 margin-left">
+                            <span class="col-sm-4 pl-0">
+                                <label class="ad_checkbox_label pl-0 m-0"> Desktop </label>
+                                <input class="adhesion_device_size form-control input_fields" [(ngModel)]="AdhesionPlacementDetails['sic_site_setting']['desktop_bottom_margin']">
+                                <label class="ad_checkbox_label pl-1 m-0">px</label>
+                            </span>
+                            <span class="col-sm-4 pl-0">
+                                <label class="ad_checkbox_label pl-2 m-0"> Tablet </label>
+                                <input class="adhesion_device_size form-control input_fields" [(ngModel)]="AdhesionPlacementDetails['sic_site_setting']['tablet_bottom_margin']">
+                                <label class="ad_checkbox_label pl-1 m-0">px</label>
+                            </span>
+                            <span class="col-sm-4 pl-0">
+                                <label class="ad_checkbox_label pl-2 m-0"> Mobile </label>
+                                <input class="adhesion_device_size form-control input_fields" [(ngModel)]="AdhesionPlacementDetails['sic_site_setting']['mobile_bottom_margin']">
+                                <label class="ad_checkbox_label pl-1 m-0">px</label>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <gc-inview-passback [inViewPassback]="inViewPassback"></gc-inview-passback>
+        </div>
+    </div>

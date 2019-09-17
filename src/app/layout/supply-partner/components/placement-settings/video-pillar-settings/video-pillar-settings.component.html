@@ -1,0 +1,46 @@
+<div *ngIf="VideoPillarPlacementDetails" (change)="onChange()">
+    <div class="col-sm-12 card border-0">
+        <div class="col-sm-12 pl-0">
+            <div class="">
+                <div class="row pl-0 margin-row">
+                    <div class="col-sm-3 pl-0">
+                        <label class="ad_checkbox_label pl-0"> Desktop</label>
+                    </div>
+                    <div class="col-sm-9 pl-0" *ngIf="video_pillar_settings">
+                        <p-checkbox [(ngModel)]="video_pillar_settings.desktop" (ngModelChange)=onDesktopClick() binary="true"></p-checkbox>
+                    </div>
+                </div>
+                <div class="row pl-0 margin-row">
+                    <div class="col-sm-3 pl-0">
+                        <label class="ad_checkbox_label pl-0"> Sound off/on</label>
+                    </div>
+                    <div class="col-sm-9 pl-0" *ngIf="video_pillar_settings">
+                        <label class="switch">
+                            <input type="checkbox" [(ngModel)]="video_pillar_settings.video_outstream_muted">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row pl-0 margin-row">
+                    <div class="col-sm-3 pl-0">
+                        <label class="ad_checkbox_label pl-0"> Page left</label>
+                    </div>
+                    <div class="col-sm-9 pl-0" *ngIf="video_pillar_settings">
+                        <p-checkbox (click)=outstreamPosition(1) [(ngModel)]="video_pillar_settings.page_left" binary="true"
+                            [disabled]="!video_pillar_settings.desktop"></p-checkbox>
+                    </div>
+                </div>
+                <div class="row pl-0 margin-row">
+                    <div class="col-sm-3 pl-0">
+                        <label class="ad_checkbox_label pl-0"> Page right</label>
+                    </div>
+                    <div class="col-sm-9 pl-0" *ngIf="video_pillar_settings">
+                        <p-checkbox (click)=outstreamPosition(2) [(ngModel)]="video_pillar_settings.page_right" binary="true"
+                            [disabled]="!video_pillar_settings.desktop"></p-checkbox>
+                    </div>
+                </div>
+                <gc-inview-passback [inViewPassback]="inViewPassback"></gc-inview-passback>
+            </div>
+        </div>
+    </div>
+</div>

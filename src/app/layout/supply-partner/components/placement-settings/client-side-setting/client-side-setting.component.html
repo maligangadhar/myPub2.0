@@ -1,0 +1,51 @@
+<div>
+    <div class="col-md-12 sdSetting">
+        <div class="container">
+            <div *ngIf="showSelectAll === true" class="row selectAllRow">
+                <div class="col-sm-11 float-left pl-0">
+                </div>
+                <span class="col-sm-1 pl-0">
+                    <button type="button" *ngIf="!showDeselect" class="btn btn-primary select_all_button" (click)=selectAll()>Select
+                        all</button>
+                    <button type="button" *ngIf="showDeselect" class="btn btn-primary select_all_button de_select_all" (click)=deSelectAll()>
+                        Deselect all</button>
+                </span>
+            </div>
+            <div class="row">
+                <div class="col-md-3 csSettinglabel" style="color:black;">
+                    <span *ngIf="!showSelectAll === true"> Client Side Settings</span>
+                </div>
+                <div class="ad_checkbox_label col-md-2 pl-0">
+                    App Nexus
+                </div>
+                <div class="ad_checkbox_label col-md-2 pl-2">
+                    OpenX
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="ad_checkbox_label col-md-3 pt-1">
+                    Real Impact
+                </div>
+                <div class="col-md-2" *ngFor="let size of realImpactList">
+                    <gc-sp-checkbox [size]="size" (selected)=updateSettings($event) [disabled]="disabled"></gc-sp-checkbox>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="ad_checkbox_label col-md-3 pt-1">
+                    Real Display
+                </div>
+                <div class="col-md-2" *ngFor="let size of realDisplayList">
+                    <gc-sp-checkbox [size]="size" (selected)=updateSettings($event) [disabled]="disabled"></gc-sp-checkbox>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="ad_checkbox_label col-md-3 pt-1">
+                    In-feed Impact
+                </div>
+                <div class="col-md-2" *ngFor="let size of infeedList">
+                    <gc-sp-checkbox [size]="size" (selected)=updateSettings($event) [disabled]="disabled"></gc-sp-checkbox>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

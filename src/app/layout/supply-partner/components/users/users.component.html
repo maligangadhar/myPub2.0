@@ -1,0 +1,173 @@
+<div *ngIf="msgs">
+    <p-messages [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'1000ms'" [(value)]="msgs" [closable]="true">
+    </p-messages>
+</div>
+<div class="users" [style.height.px]="height">
+    <div class="row users">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-8 searchHeader" *ngIf="userFlag">
+            <strong>Users</strong>
+            <button type="button" class="btn createAccount addUser" (click)="addNewUser(contents)">
+                Add User</button>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-8 searchHeader" *ngIf="!userFlag">
+            <span class="backUserBtn"><i title="back to user list" class="fa fa-long-arrow-left fa-lg "
+                    (click)="backToUserList()" aria-hidden="true"></i></span>
+            <span *ngIf="!editEmailFlag"> <span class="selectedUSer"> {{selectedUser}} </span>
+                <button type="button" class="btn createAccount addUser" *ngIf="!optionFlag" (click)="navOptions()">
+                    Options</button>
+                <span (click)="editEmailDetails()" *ngIf="optionFlag" style="font-size:14px;">
+                    <font class="editEmail" color="red">edit email</font>
+                </span>
+            </span>
+            <span *ngIf="editEmailFlag" class="form-group">
+                <input type="text" [(ngModel)]="selectedUser" class="form-control input_fields selectedUser">
+                <button type="button" class="btn createAccount saveEmail"
+                    (click)="editUserEmailAddress(contents)">
+                    save email</button>
+                    <button type="button" style="margin-left:5px;background-color:#181529;" class="btn createAccount saveEmail" (click)="cancelEditEmail()">
+                        cancel</button>
+            </span>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" *ngIf="userFlag" style="margin-top:5px;">
+            <div>
+                <div class="input-group col-md-12">
+                    <input [(ngModel)]="searchText"  type="text" class="form-control searchSupplyBar"
+                        placeholder="Search" (keyup)="onKeyUp($event)" #search />
+                    <span class="input-group-btn">
+                        <span class="btn searchButton" type="button">
+                            <span class="fa fa-times mr-1" (click)="onClearSearch()" *ngIf="searchText.length>0"></span>
+                            <span class="fa fa-search" (click)="onSearch(search.value)"></span>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="col-md-12 col-sm-12 userContainer">
+        <div *ngIf="userFlag">
+            <div *ngIf="userDetailsLoading" class="pubLoading">
+                <div class="loadingSpinner"></div>
+            </div>
+            <div *ngIf="!userDetailsLoading">
+                <table>
+                    <tbody id='searchUserBody'>
+                        <div *ngIf="userCount <1 ">
+                            <gc-no-results [displaySiteDetails]="searchText" [rowCount]="userCount"
+                                [searchText]="searchText">
+                            </gc-no-results>
+                        </div>
+                        <tr *ngFor="let user of userData">
+                            <td class="p-1 userNav">
+                                <a>
+                                    <span class="placementName" (click)="onUserClick(user)">{{ user.email}}</span>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div *ngIf="!userFlag">
+            <cdk-virtual-scroll-viewport [style.height.px]="height-20" [itemSize]="20">
+                <table class="searchTable">
+                    <thead>
+                        <tr class="supplyChainTableColumn">
+                            <th class=" col-sm-1 col-md-1 pl-1 pt-0 selectAllPlacements">
+                                <p-checkbox  *ngIf="optionFlag && placementDetails.length > 1"  [(ngModel)]="selectAllPlacementFlag" (onChange)="selectAll()" binary="true"
+                                    [disabled]="disabled">
+                                </p-checkbox>
+                            </th>
+                            <th class="placementId col-sm-5 col-md-5">
+                                <p>Placement Name</p>
+                            </th>
+                            <th class="placementId col-sm-3 col-md-3">
+                                <p>GUID</p>
+                            </th>
+                            <th class="placementId col-sm-3 col-md-3" *ngIf="showGuidFlag">
+
+                            </th>
+                        </tr>
+                    </thead>
+                    <div *ngIf="placementDetailsLoading" class="pubLoading">
+                        <div class="loadingSpinner"></div>
+                    </div>
+                    <tbody id='searchTableBody' *ngIf="!placementDetailsLoading">
+                        <div *ngIf="rowCount <1">
+                            <gc-no-results [displaySiteDetails]="placementDetails" [globalSearchText]="selectedUser"
+                                [rowCount]="rowCount" [searchText]="searchText">
+                            </gc-no-results>
+                        </div>
+                        <tr *cdkVirtualFor="let site of placementDetails">
+                            <td class="col-sm-1  p-0 pl-1" style="width:20px !important;">
+                                <gc-sp-checkbox *ngIf="optionFlag" (selected)="checkSelectAll()" [size]="site"></gc-sp-checkbox>
+                            </td>
+                            <td class="col-sm-5 placementName p-1">
+                                <span class="mb-0">
+                                    <a [routerLinkActive]="['router-link-active']">
+                                        <span (click)="onSiteView(site)">
+                                            {{ site.placement_name }}
+                                        </span>
+                                    </a>
+                                </span>
+                            </td>
+                            <td class="col-sm-3 placementName p-1">
+                                <p class="mb-0">
+                                    <a [routerLinkActive]="['router-link-active']">
+                                        <span (click)="onSiteView(site)">{{ site.guid }}</span>
+                                    </a>
+                                </p>
+                            </td>
+                            <td class="col-sm-3 placementName p-0">
+                                <p class="mb-0">
+                                    <span style="color:#504E4D;font-weight: bolder"
+                                        (click)="deletePlacement(site,deleteUserContent)"><i
+                                            class="fa fa-times-circle fa-lg" aria-hidden="true"></i></span>
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="associateUser"  *ngIf="optionFlag && placementDetails.length > 0">
+                    <label class="assoUser"> Associate to user</label>
+                    <span style="margin-left:16px">
+                        <p-autoComplete [(ngModel)]="associated_user" [inputStyle]="{'height':'30px'}" [suggestions]="filteredUsers"
+                            (completeMethod)="filterUsers($event)" [size]="40" placeholder="" [multiple]="false">
+                        </p-autoComplete>
+                        <span class="addUserBtn">
+                            <button type="button" class="btn createAccount addUser" [disabled]="!associated_user" style="width:120px" (click)="cloneUser()"> Apply and Save</button>
+                        </span>
+                    </span>
+                </div>
+            </cdk-virtual-scroll-viewport>
+        </div>
+    </div>
+    <div *ngIf="userFlag" class="col-md-12 col-sm-12" style="text-align:center ">
+        <p-paginator [rows]="100" [totalRecords]="pageCount" (onPageChange)="paginate($event)"></p-paginator>
+    </div>
+</div>
+<ng-template #contents let-modal>
+    <div class="modal-body">
+        <div class="form-group">
+            <label>Enter user email address</label>
+            <input type="text" [(ngModel)]="newUser" class="form-control pl-2" />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn createAccount" [disabled]="!newUser" (click)="modal.close(1)">
+            Add User </button>
+        <button type="button" class="btn createAccount" (click)="modal.close(0)">Cancel</button>
+    </div>
+</ng-template>
+<ng-template #deleteUserContent let-modal>
+    <div class="modal-body">
+        <div class="form-group deleteUser">
+            Remove {{selectedUser}} from {{selected_placement}} ?
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn createAccount" (click)="modal.close(1)">
+            Remove </button>
+        <button type="button" class="btn createAccount" (click)="modal.close(0)">Cancel</button>
+    </div>
+</ng-template>

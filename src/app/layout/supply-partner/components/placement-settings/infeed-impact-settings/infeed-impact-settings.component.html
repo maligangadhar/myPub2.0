@@ -1,0 +1,83 @@
+<div (change)=onCheckBoxClick()>
+    <div class="col-sm-12 border-0 ">
+        <div class="col-sm-12 pl-0">
+            <div>
+                <div class="row">
+                    <div class="col-sm-11 float-left pl-0">
+                    </div>
+                    <div class="col-sm-1 float-right pl-0">
+                        <button type="button" *ngIf="!showDeselectButton" class="btn btn-primary select_all_button"
+                            (click)=selectAll()>Select
+                            all</button>
+                        <button type="button" *ngIf="showDeselectButton"
+                            class="btn btn-primary select_all_button de_select_all" (click)=deSelectAll()>Deselect
+                            all</button>
+                    </div>
+                </div>
+                <div class="row margin-row">
+                    <div class="col-sm-3 float-left pl-0">
+                        <label class="ad_checkbox_label pl-0"> Desktop</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <span *ngFor="let size of InfeedImpactDesktopList">
+                                <div class="row col-sm-10 infeedEffect">
+                                    <span class="col-sm-8">
+                                        <gc-sp-checkbox (selected)="onCheckBoxClick()" [size]="size"></gc-sp-checkbox>
+                                    </span>
+                                    <span class="col-sm-4">
+                                        <select [(ngModel)]="size.render_effect_id"
+                                            *ngIf="(size.size === '300x250' && size.enabled) || (size.size === '970x250' && size.enabled)">
+                                            <option *ngFor="let element of InfeedImpactMeta.desktop"
+                                                [value]="element.id">{{element.display_name}}</option>
+                                        </select>
+                                    </span>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 pl-0">
+            <div class="card-body p-0">
+                <div class="row margin-row">
+                    <div class="col-sm-3 pl-0">
+                        <label class="ad_checkbox_label pl-0"> Mobile</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <span *ngFor="let size of InfeedImpactPhoneList">
+                                <div class="row col-sm-10 infeedEffect">
+                                    <span class="col-sm-8">
+                                        <gc-sp-checkbox (selected)="onCheckBoxClick()" [size]="size"></gc-sp-checkbox>
+                                    </span>
+                                    <span class="col-sm-4">
+                                        <select [(ngModel)]="size.render_effect_id"
+                                            *ngIf="(size.size === '300x250' && size.enabled) || (size.size === '320x480' && size.enabled)">
+                                            <option *ngFor="let element of InfeedImpactMeta.mobile"
+                                                [value]="element.id">{{element.display_name}}</option>
+                                        </select>
+                                    </span>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <gc-infeed-passback (infeedPassbackEmit)=updatePassback($event) [inFeedPassback]="inFeedPassback">
+        </gc-infeed-passback>
+    </div>
+    <ng-template #content let-modal>
+        <div class="modal-body">
+            <form>
+                <div class="form-group">
+                    {{dialog_box_content}}
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn createAccount" (click)="modal.close(1)">OK</button>
+        </div>
+    </ng-template>

@@ -1,0 +1,50 @@
+<div *ngIf="msgs">
+    <p-messages [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'1000ms'" [(value)]="msgs" [closable]="true"></p-messages>
+</div>
+
+<div class="row">
+    <div class="msgContainer">
+        <div class="content" [style.height.px]="height">
+            <div class="col-sm-12 header">
+                Dashboard Message
+            </div>
+            <div *ngIf="msgLoading" class="pubLoading">
+                <div class="loadingSpinner"></div>
+            </div>
+            <br>
+            <div *ngFor="let size of messageDetails">
+                <div class="row">
+                    <div class="col-sm-10 m-2 chkBox">
+                        <gc-sp-checkbox [readonly]="msgSelectFlag" (selected)="onCheckBoxClick($event)" [size]="size"></gc-sp-checkbox>
+                    </div>
+                </div>
+            </div>
+            <div  style="margin-left:30px" *ngIf="showCustomeMessage">
+                <textarea class="col-sm-8 col-md-8 col-lg-8" pInputTextarea [rows]="5" [cols]="120" [(ngModel)]="customeMessage"></textarea>
+            </div>
+            <div class="marginLeft" *ngIf="!msgSelectFlag">
+                <button type="button" class="btn createAccount" [disabled]="showCustomeMessage && !customeMessage"
+                    (click)=postMessage()>Post Message</button>
+            </div>
+            <div class="marginLeft" *ngIf="msgSelectFlag">
+                <button type="button" class="btn createAccount" (click)=deleteMessage(content)> Delete Message</button>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Confirmation</h4>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+                {{dialog_box_content}}
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn createAccount" (click)="modal.close(1)">Remove message</button>
+        <button type="button" class="btn createAccount" (click)="modal.close(0)">Cancel</button>
+    </div>
+</ng-template>

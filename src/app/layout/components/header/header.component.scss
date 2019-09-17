@@ -1,0 +1,64 @@
+$topnav-background-color: #222;
+:host {
+    .navbar {
+        background-color: $topnav-background-color;
+        .navbar-brand {
+            color: #fff;
+        }
+        .nav-item > a {
+            color: #999;
+            &:hover {
+                color: #fff;
+            }
+        }
+    }
+    .messages {
+        width: 300px;
+        .media {
+            border-bottom: 1px solid #ddd;
+            padding: 5px 10px;
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+        .media-body {
+            h5 {
+                font-size: 13px;
+                font-weight: 600;
+            }
+            .small {
+                margin: 0;
+            }
+            .last {
+                font-size: 12px;
+                margin: 0;
+            }
+        }
+    }
+}
+
+.close,input:focus {
+    outline: none;
+    cursor: pointer;
+}
+
+.searchSupplyBar{
+    height:28px;
+    width: 300px;
+}
+
+.searchButton{
+    height:28px;
+    padding: 0;
+    vertical-align: baseline;
+    width: 50px;
+    background-color: #cccccc;
+    > .searchClear {
+        padding:4px 2px 0px 8px;
+    }
+    > .searchIcon{
+        padding-top:2px;
+        float: right;
+        padding-top: 4px;
+    }
+}

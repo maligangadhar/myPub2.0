@@ -1,0 +1,57 @@
+@import '../../../styles/common_variables';
+
+.tagLabel {
+    margin-left: 10px;
+}
+
+.tagContainer {
+    @extend .gibsonLight;
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    margin: 10px 20px 0px 20px;
+    color: #666666;
+    padding: 6px 16px 6px 16px;
+    font-size: 14px;
+
+    .content {
+        margin: 5px;
+    }
+
+    .second {
+        height: 16px;
+        margin-top: 5px;
+    }
+
+    .third {
+        margin-top: 12px;
+        margin-bottom: 10px;
+    }
+}
+
+textarea {
+    height: 120px;
+    width: 1014px;
+    border-radius: 5px;
+    margin: 5px 0 0 0;
+}
+
+.genTagBtn {
+    @extend .gibsonLight;
+    border-radius: 30px;
+    padding: 0px;
+    width: 140px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #ffffff;
+    height: 25px;
+    background-color: #EC2F3B;
+}
+
+.downloadBtn {
+    margin: 5px 0px 0px 10px;
+}
+
+.guidResult {
+    margin-top: 8px;
+}

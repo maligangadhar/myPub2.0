@@ -1,0 +1,235 @@
+<div class="main">
+    <div class="row">
+        <div class="col-sm-12 detailHeader">
+            <div *ngIf="site && site.supply_partner">
+                <div class="d-inline selectedSite leftBanner">{{site.supply_partner.partner_name}} </div>
+                <div class="banner">
+                    <strong> Supply Partner ID: </strong> <span (click)="navToSalesForce()" class="supplyPartnerLink"> {{site.supply_partner.partner_guid}} </span>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!this.siteDetailsLoading && !this.showSPEditFlag" class="col-sm-6 leftPanel">
+            <div class="layoutleftPanel">
+                <div class="container ">
+                    <form name="form" #f="ngForm" novalidate>
+                        <div class="row spInfo">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="company">Company Name</label>
+                                    <div class="viewMode">
+                                        {{site.supply_partner.partner_name}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="url">URL</label>
+                                    <div class="viewMode">
+                                        {{site.supply_partner.url}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row spInfo">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="firstName">First Name</label>
+                                    <div class="viewMode"> {{site.supply_partner.first_name}}</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="lastName">Last Name</label>
+                                    <div class="viewMode">
+                                        {{site.supply_partner.last_name}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row spInfo">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="addres">Address</label>
+                                    <div class="viewMode">
+                                        {{site.supply_partner.street_address}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="city">City</label>
+                                    <div class="viewMode">
+                                        {{site.supply_partner.city}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row spInfo">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="state">State/Province</label>
+                                    <div class="viewMode">
+                                        {{site.supply_partner.state}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="postalCode">Postal Code</label>
+                                    <div class="viewMode">
+                                        {{site.supply_partner.postal_code}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row spInfo">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="country">Select Country</label>
+                                    <div class="viewMode">
+                                        {{site.supply_partner.country}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="phone">Phone#</label>
+                                    <div class="viewMode">
+                                        {{site.supply_partner.phone}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row spInfo">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="currency">Payout Currency</label>
+                                    <div class="viewMode">
+                                        {{site.supply_partner.payout_currency}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <div class="viewMode">
+                                        {{site.supply_partner.email}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row spInfo">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="jobFunction">Job Function</label>
+                                    <div class="viewMode">
+                                        {{site.supply_partner.job_function_id}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="jobFunction">Source Relationship</label>
+                                    <div class="viewMode">
+                                        {{site.supply_partner.seller_type}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-inline">
+                            <button class="btn editAccountInfo" (click)="editMode()">Edit account info</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div>
+                <div class="container" *ngIf="!this.siteDetailsLoading && !this.showSPEditFlag">
+                    <div class="layoutRightPanel placement">
+                        <div class="row">
+                            <div class="container placementContainer">
+                                <table style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th class="placement" style="width:60%">Placement Name</th>
+                                            <th class="placement" style="width:40%">GUID</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let placement of site.placements| slice :0:10 | sort:'placement_name' "
+                                            class="placementItems" (click)="editPlacement(placement)">
+                                            <td class="supplyChainName">
+                                                <a [routerLinkActive]="['router-link-active']">
+                                                    <span (click)=editPlacement(placement)>
+                                                        <span *ngIf="placement.placement_name; else showLoginName">
+                                                            {{placement.placement_name}}
+                                                        </span>
+                                                        <ng-template #showLoginName>
+                                                            {{placement.login}}
+                                                        </ng-template>
+                                                    </span>
+                                                </a>
+                                            </td>
+                                            <td class="supplyChainId">
+                                                <a [routerLinkActive]="['router-link-active']">
+                                                    <span (click)="editPlacement(placement)">
+                                                        {{placement.guid}}
+                                                    </span>
+                                                </a>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="viewMode createGuid" (click)="createPlacement()">
+                                        <i style="color:red" class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                        <span class="leftBanner">
+                                            <strong> Create placement </strong>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 ">
+                                <div class="viewAllGuid " (click)="getAllGUID()">
+                                    <label class="createGuid">View All GUIDs</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row layoutRightPanel partnerAccount">
+                        <!-- <div class="col-md-12 second  form-group">
+                            <div>
+                                <span class="GuidLabel">Partner type : </span>
+                                <span class="viewMode">
+                                    {{site.supply_partner.partner_type ? site.supply_partner.partner_type : 'Active'}}
+                                </span>
+                            </div>
+                            <div>
+                                <span class="GuidLabel"> Account status : </span>
+                                <span class="viewMode" *ngIf="site.supply_partner.status === true">
+                                    Active
+                                </span>
+                                <span class="viewMode" *ngIf="site.supply_partner.status === false">
+                                    Inactive
+                                </span>
+                                <span class="viewMode" *ngIf="site.supply_partner.status !== true && site.supply_partner.status !== false">
+                                    Paused
+                                </span>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div clss="row">
+        <div *ngIf="siteDetailsLoading" class="pubLoading">
+            <div class="loadingSpinner"></div>
+        </div>
+    </div>
+</div>

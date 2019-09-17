@@ -1,0 +1,159 @@
+@import './common_variables';
+
+.searchBar {
+    border: 1px solid gray;
+    border-radius: 30px;
+    padding: 14px;
+    margin: 3px;
+    width: 330px;
+    height: 27px;
+    font-size: 13px;
+    font-family: "Gibson Light";
+}
+
+.createAccount {
+    @extend .gibsonLight;
+    border-radius: 30px;
+    margin-top: 6px;
+    padding: 0px;
+    width: 156px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #ffffff;
+    height: 27px;
+    background-color: #EC2F3B;
+}
+
+.downloadBtn {
+    @extend .gibsonLight;
+    border-radius: 30px;
+    margin-top: 6px;
+    margin-left: 5px;
+    padding: 0px;
+    width: 156px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #ffffff;
+    height: 27px;
+    background-color: black;
+}
+
+.marginLeft {
+    margin-left: 30px;
+}
+
+.adminNavbar {
+    background-color: #181529 !important;
+    height: 65px;
+
+    .logo {
+        width: 290px;
+        height: 38px;
+    }
+
+    .searchIcon {
+        margin-left: -24px;
+        cursor: pointer;
+        height: 20px;
+        width: 20px;
+    }
+
+    .userName {
+        @extend .gibsonLight;
+        font-size: 18px;
+    }
+
+    .caret {
+        width: 12px;
+        height: 16px;
+        color: #d0d0d0;
+    }
+}
+
+.sidebar {
+    background-color: #2A283D !important;
+
+    .list-group-item {
+        background-color: #2A283D !important;
+    }
+
+    @extend .gibsonLight;
+    font-size: 16px;
+    color: #d0d0d0;
+    width:184px !important;
+}
+
+.pubLoading {
+    height: 610px;
+    width: 100%;
+    //position: absolute;
+    z-index: 9999999;
+    text-align: center;
+    padding: 50px;
+    left: 1%;
+    background: #fff;
+
+    .loadingSpinner {
+        border: 4px solid #f3f3f3;
+        -webkit-animation: spin 0.8s linear infinite;
+        animation: spin 0.8s linear infinite;
+        border-top: 4px solid #299ed9;
+        border-radius: 50%;
+        width: 90px;
+        height: 90px;
+        display: inline-block;
+    }
+
+    span {
+        margin-top: 10px;
+        display: block;
+    }
+
+    @-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+}
+
+
+.searchSupplyBar {
+    border: 1px solid #cccccc;
+    border-right: none;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+.searchSupplyBar:focus {
+    border: 1px solid #cccccc;
+    border-right: none;
+}
+
+.searchButton {
+    border: 1px solid #cccccc;
+    border-left: none;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.searchButton.focus,
+.searchButton:focus,
+.searchSupplyBar.focus,
+.searchSupplyBar:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0;
+}

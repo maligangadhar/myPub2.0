@@ -1,0 +1,121 @@
+<div (change)=onCheckBoxClick()>
+    <div class="col-sm-12 card border-0 pt-2">
+        <div class="col-sm-12 pl-0">
+            <div class="">
+                <div class="row">
+                    <div class="col-sm-11 float-left pl-0">
+                    </div>
+                    <div class="col-sm-1 float-right pl-0">
+                        <button type="button" *ngIf="!showDeselectButton" class="btn btn-primary select_all_button"
+                            (click)=selectAll()>Select
+                            all</button>
+                        <button type="button" *ngIf="showDeselectButton" class="btn btn-primary select_all_button de_select_all"
+                            (click)=deSelectAll()>Deselect all</button>
+                    </div>
+                </div>
+                <div class="row pl-0 margin-row">
+                    <div class="col-sm-3 pl-0">
+                        <label class="ad_checkbox_label pl-0"> Desktop</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <span *ngFor="let size of SiabDesktopList">
+                                <gc-sp-checkbox (selected)="onCheckBoxClick()" [size]="size"></gc-sp-checkbox>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 pl-0">
+            <div class="">
+                <div class="row pl-0 margin-row">
+                    <div class="col-sm-3 pl-0">
+                        <label class="ad_checkbox_label pl-0"> Tablet</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <span *ngFor="let size of SiabTabletList">
+                                <gc-sp-checkbox (selected)="onCheckBoxClick()" [size]="size"></gc-sp-checkbox>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 pl-0">
+            <div class="">
+                <div class="row pl-0 margin-row">
+                    <div class="col-sm-3 pl-0">
+                        <label class="ad_checkbox_label pl-0"> Mobile</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <span *ngFor="let size of SiabPhoneList">
+                                <gc-sp-checkbox (selected)="onCheckBoxClick()" [size]="size"></gc-sp-checkbox>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <span *ngIf="SiabPlacementDetails && SiabPlacementDetails['ad_settings'] && SiabPlacementDetails['ad_settings']['Standard Display']">
+            <div class="col-sm-12 pl-0" *ngFor="let passback of SiabPlacementDetails['ad_settings']['Standard Display']['desktop']">
+                <div *ngIf="passback.enabled">
+                    <div class="row pl-0 margin-row">
+                        <div class="col-sm-4 pl-0">
+                            <label class="ad_checkbox_label pl-0"> SIAB Desktop {{passback.size}} Passback Tag<font
+                                    color="red">*</font>:</label>
+                        </div>
+                        <div class="col-sm-8 pl-0">
+                            <input type="text" class="col-sm-10 form-control passbackTagInputFields" [(ngModel)]="passback.passback_tag" required/>
+                        </div>
+                        <div class="col-sm-4 pl-0">
+                            <label *ngIf="passback.passback_tag.length === 0 && passback.enabled" class="passbackValidation">*Passback tags are
+                                required for SIAB units</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </span>
+        <span *ngIf="SiabPlacementDetails && SiabPlacementDetails['ad_settings'] && SiabPlacementDetails['ad_settings']['Standard Display']">
+            <div class="col-sm-12 pl-0" *ngFor="let passback of SiabPlacementDetails['ad_settings']['Standard Display']['tablet']">
+                <div *ngIf="passback.enabled">
+                    <div class="row pl-0 margin-row">
+                        <div class="col-sm-4 pl-0">
+                            <label class="ad_checkbox_label pl-0"> SIAB Tablet {{passback.size}} Passback Tag
+                                <span class="mandatory_fields">*</span>:</label>
+                        </div>
+                        <div class="col-sm-8 pl-0">
+                            <input type="text" class="col-sm-10 form-control passbackTagInputFields" [(ngModel)]="passback.passback_tag" />
+                        </div>
+                        <div class="col-sm-4 pl-0">
+                            <label *ngIf="passback.passback_tag.length === 0 && passback.enabled" class="passbackValidation">*Passback tags are
+                                required for SIAB units</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </span>
+        <span *ngIf="SiabPlacementDetails && SiabPlacementDetails['ad_settings'] && SiabPlacementDetails['ad_settings']['Standard Display']">
+            <div class="col-sm-12 pl-0" *ngFor="let passback of SiabPlacementDetails['ad_settings']['Standard Display']['mobile']">
+                <div *ngIf="passback.enabled">
+                    <div class="row pl-0 margin-row">
+                        <div class="col-sm-4 pl-0">
+                            <label class="ad_checkbox_label pl-0"> SIAB Phone {{passback.size}} Passback Tag<span class="mandatory_fields">*</span></label>
+                        </div>
+                        <div class="col-sm-8 pl-0">
+                            <input type="text" class="col-sm-10 form-control passbackTagInputFields" [(ngModel)]="passback.passback_tag" />
+                        </div>
+                        <div class="col-sm-4 pl-0">
+                            <label *ngIf="passback.passback_tag.length === 0 && passback.enabled" class="passbackValidation">*Passback tags are
+                                required for SIAB units</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </span>
+    </div>
+</div>

@@ -1,0 +1,229 @@
+<div>
+    <div *ngIf="msgs">
+        <p-messages [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'1000ms'" [(value)]="msgs"
+            [closable]="true"></p-messages>
+    </div>
+    <div class="row" *ngIf="viewMode">
+        <div class="col-sm-12 spLabel">
+            <div>
+                <div class="d-inline spBanner"> Create New Supply Partner </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!viewMode" class="spLabel">
+        <strong> Supply Partner ID : </strong> {{pub_guid}}
+    </div>
+    <div class="container addNewSp">
+        <form [formGroup]="registerForm" novalidate>
+            <div class="row justify-content-center">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Company Name <span class="mandatory_fields">*</span></label>
+                        <input type="text" formControlName="partner_name" class="form-control pl-1"
+                            [ngClass]="{ 'is-invalid': submitted && f.partner_name.errors }" />
+                        <div *ngIf="submitted && f.partner_name.errors" class="invalid-feedback">
+                            <div *ngIf="f.partner_name.errors.required">Company Name is required</div>
+                            <div *ngIf="f.partner_name.errors.incorrect">This Company name is already exists</div>
+                            <div *ngIf="f.partner_name.errors.pattern">Please enter a
+                                valid company name </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1"> </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>URL <span class="mandatory_fields">*</span></label>
+                        <input formControlName="url" class="form-control pl-1"
+                            [ngClass]="{ 'is-invalid': submitted && f.url.errors }" />
+                        <div *ngIf="f.url.errors" class="invalid-feedback">
+                            <div *ngIf="f.url.errors.required">Please enter URL</div>
+                            <div *ngIf="f.url.errors.pattern">Please enter a valid URL</div>
+                            <div *ngIf="f.url.errors.incorrect">{{urlErrorMessage}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>First Name <span class="mandatory_fields">*</span></label>
+                        <input type="text" formControlName="first_name" class="form-control pl-1"
+                            [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }" />
+                        <div *ngIf="submitted && f.first_name.errors" class="invalid-feedback">
+                            <div *ngIf="f.first_name.errors.required"> First Name is required</div>
+                            <div *ngIf="f.first_name.errors.pattern || f.first_name.errors.incorrect">Please enter a
+                                valid </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1"> </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Last Name <span class="mandatory_fields">*</span></label>
+                        <input type="text" formControlName="last_name" class="form-control pl-1"
+                            [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }" />
+                        <div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
+                            <div *ngIf="f.last_name.errors.required">Last Name is required</div>
+                            <div *ngIf="f.last_name.errors.pattern || f.last_name.errors.incorrect">Please enter a
+                                valid last name
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Address <span class="mandatory_fields">*</span></label>
+                        <input type="text" formControlName="street_address" class="form-control pl-1"
+                            [ngClass]="{ 'is-invalid': submitted && f.street_address.errors }" />
+                        <div *ngIf="submitted && f.street_address.errors" class="invalid-feedback">
+                            <div *ngIf="f.street_address.errors.required">Address is required</div>
+                            <div *ngIf="f.street_address.errors.pattern || f.street_address.errors.incorrect">Address
+                                is invalid</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1"> </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>City <span class="mandatory_fields">*</span></label>
+                        <input type="text" formControlName="city" class="form-control pl-1"
+                            [ngClass]="{ 'is-invalid': submitted && f.city.errors }" />
+                        <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                            <div *ngIf="f.city.errors.required">City is required</div>
+                            <div *ngIf="f.city.errors.pattern || f.city.errors.incorrect ">City is invalid</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>State/province <span class="mandatory_fields">*</span></label>
+                        <input type="text" formControlName="state" class="form-control pl-1"
+                            [ngClass]="{ 'is-invalid': submitted && f.state.errors }" />
+                        <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                            <div *ngIf="f.state.errors.required">State is required</div>
+                            <div *ngIf="f.state.errors.pattern || f.state.errors.incorrect">Please enter a valid state
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1"> </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Postal Code <span class="mandatory_fields">*</span></label>
+                        <input type="text" formControlName="postal_code" class="form-control pl-1"
+                            [ngClass]="{ 'is-invalid': submitted && f.postal_code.errors }" />
+                        <div *ngIf="submitted && f.postal_code.errors" class="invalid-feedback">
+                            <div *ngIf="f.postal_code.errors.required">Postal Code is required</div>
+                            <div *ngIf="f.postal_code.errors.pattern || f.postal_code.errors.incorrect">Postal Code is
+                                invalid</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Country <span class="mandatory_fields">*</span></label>
+                        <select class="form-control" formControlName="country"
+                            [ngClass]="{ 'is-invalid': submitted && f.country.errors }">
+                            <option *ngFor="let jl of countryList" [value]="jl.code">{{jl.name}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+                            <div *ngIf="f.country.errors.required">Country is required</div>
+                            <div *ngIf="f.country.errors.pattern">Country is invalid</div>
+                            <div *ngIf="f.country.errors.incorrect">Please select a valid country</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1"> </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Phone <span class="mandatory_fields">*</span></label>
+                        <input formControlName="phone" class="form-control pl-1"
+                            [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
+                        <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                            <div *ngIf="f.phone.errors.required">Phone is required</div>
+                            <div *ngIf="f.phone.errors.incorrect">Please enter a valid phone number</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Payout Currency <span class="mandatory_fields">*</span></label>
+                        <select class="form-control" formControlName="payout_currency"
+                            [ngClass]="{ 'is-invalid': submitted && f.payout_currency.errors }">
+                            <option *ngFor="let pow of currencyList" [value]="pow">{{pow}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.payout_currency.errors" class="invalid-feedback">
+                            <div *ngIf="f.payout_currency.errors.required">Payout Currency is required</div>
+                            <div *ngIf="f.payout_currency.errors.pattern">Payout Currency is invalid</div>
+                            <div *ngIf="f.payout_currency.errors.incorrect">Please select a valid payout currency</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1"> </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Email Address <span class="mandatory_fields">*</span></label>
+                        <input type="email" formControlName="email" class="form-control pl-1"
+                            [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">Email is required</div>
+                            <div *ngIf="f.email.errors.email || f.email.errors.pattern">Email
+                                must be a valid email
+                                address</div>
+                            <div *ngIf="f.email.errors.incorrect">{{emailErrorMessage}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Job Function <span class="mandatory_fields">*</span></label>
+                        <select class="form-control" formControlName="job_function_id"
+                            [ngClass]="{ 'is-invalid': submitted && f.job_function_id.errors }">
+                            <option *ngFor="let jl of jbList" [value]="jl.id">{{jl.name}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.job_function_id.errors" class="invalid-feedback">
+                            <div *ngIf="f.job_function_id.errors.required">Job Function is required</div>
+                            <div *ngIf="f.job_function_id.errors.pattern || f.job_function_id.errors.incorrect">Job
+                                Function is invalid</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1"> </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Source Relationship <span class="mandatory_fields">*</span></label>
+                        <select class="form-control" formControlName="seller_type"
+                            [ngClass]="{ 'is-invalid': submitted && f.seller_type.errors }">
+                            <option *ngFor="let rel of directnessList" [value]="rel.id">{{rel.name}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.seller_type.errors" class="invalid-feedback">
+                            <div *ngIf="f.seller_type.errors.required">Source Relationship is required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center" style="margin-top:30px;">
+                <div class="col-md-3">
+                    <button [disabled]="loading" *ngIf="viewMode" (click)="onSubmit()"
+                        class="btn btn-danger createSPAccount">Create
+                    </button>
+                    <button [disabled]="loading" *ngIf="!viewMode" (click)="onSubmit()"
+                        class="btn btn-danger createSPAccount">Update</button>
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-dark cancelSpAccount" (click)="cancel()">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

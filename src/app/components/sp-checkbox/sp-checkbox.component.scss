@@ -1,0 +1,31 @@
+@import '../../../styles/checkbox';
+@import '../../../styles/common_variables';
+
+.ad_checkbox {
+    height: 20px;
+    width: 20px
+}
+
+.label {
+    @extend .gibsonRegular;
+    size: 12px;
+    color: #666666;
+    padding-left: 0px;
+}
+
+.label>label {
+    margin-right: 10px;
+    margin-top: 4px;
+}
+
+.placementCheckbox {
+    margin-top: 3px;
+}
+
+.banGuid>label {
+    margin-top: 3px;
+}
+
+.notBanGuid {
+    margin-top: -2px;
+}
